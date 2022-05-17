@@ -13,6 +13,8 @@ import { IndexComponent } from './home/index/index.component';
 import { BorrowBookComponent } from './home/borrow-book/borrow-book.component';
 import { CardRegistrationComponent } from './home/card-registration/card-registration.component';
 import { BookListComponent } from './home/book-list/book-list.component';
+import { DetailComponent } from './home/detail/detail.component';
+import { ContactComponent } from './home/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BookListComponent } from './home/book-list/book-list.component';
     IndexComponent,
     BorrowBookComponent,
     CardRegistrationComponent,
-    BookListComponent
+    BookListComponent,
+    DetailComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

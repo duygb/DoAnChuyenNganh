@@ -1,1 +1,48 @@
-<p>card-registration works!</p>
+<div class="container-borrow">
+  <div class="title">
+    <h1>Đăng kí thẻ thành viên</h1>
+  </div>
+  <div class="view">
+    <div class="col-md-6">
+      <form class="mb-5" method="post" id="contactForm" name="contactForm">
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <input type="text" class="form-control" name="ho-ten" id="ho-ten" placeholder="Họ và tên">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <input type="text" class="form-control" name="tensach" id="tensach" placeholder="MSSV">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <select id="khoa" name="khoa" class="btn-depart">
+              <option value="cntt">Công nghệ thông tin</option>
+              <option value="cnsh">Công nghệ sinh học</option>
+              <option value="kt">Kinh tế</option>
+              <option value="ty">Thú y</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <input type="text" class="form-control" name="lop" id="lop" placeholder="Lớp">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <input type="text" class="form-control" name="nien-khoa" id="nien-khoa" placeholder="Khóa">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 ">
+            <input type="submit" value="Confirm" class="btn btn-primary rounded-0 py-2 px-4 confirm">
+            <!-- <span class="submitting"></span> -->
+          </div>
+        </div>
+      </form>
+      <div id="form-message-warning mt-4"></div>
+    </div>
+  </div>
+</div>

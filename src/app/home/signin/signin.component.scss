@@ -7,19 +7,21 @@ body {
 .wrapper {
 	margin-top: 80px;
   margin-bottom: 80px;
-  margin-left: 100px;
+  margin-left: -55px;
 }
 
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: rgb(207, 204, 204);
   border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: gray 5px 5px;
 
   .form-signin-heading,
 	.checkbox {
 	  margin-bottom: 30px;
+    text-align: center;
 	}
 
 	.checkbox {
@@ -39,7 +41,7 @@ body {
 	}
 
 	input[type="text"] {
-	  margin-bottom: -1px;
+	  margin-bottom: 5px;
 	  border-bottom-left-radius: 0;
 	  border-bottom-right-radius: 0;
 	}
