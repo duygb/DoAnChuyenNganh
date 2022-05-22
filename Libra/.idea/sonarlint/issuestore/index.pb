@@ -13,5 +13,11 @@ C
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 T
 $LibraWebParent/LibraFrontend/pom.xml,1\d\1d80f212e305bc74212749c5ec941df0bcc036cd
-‰
-YLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/LibraBackendApplication.java,a\1\a10df5a3c797da208470ae00a0332935ae0a9211
+S
+#LibraWebParent/LibraBackend/pom.xml,7\1\71f939aabdaf0f18fd63c81ab5a8b6dc05e10b37
+i
+9LibraCommon/src/main/java/com/nlu/common/entity/Role.java,5\f\5fd4253adf6bcfc59814fbe7cc5e5a3492c4d139
+€
+PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/RoleRepository.java,1\a\1ab80e4962c2af065bfd754d3766a57db06ebaca
+…
+ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/RoleRepositoryTests.java,f\0\f0e7fe5d9e2bfd9c0240c56cc6183b264e464187

@@ -33,14 +33,12 @@ public class User {
     @Column(name = "citizen_identification", length = 12, nullable = false, unique = true)
     private String citizenIdentification;
 
-    @Column(name = "date_of_birth", length = 12, nullable = false, unique = true)
-    private String dateOfBirth;
-
     @Column(name = "phone", length = 11, nullable = false, unique = true)
     private String phoneNumber;
 
     private boolean enabled;
 
+//    @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany()
     @JoinTable(
             name = "user_role",
@@ -52,14 +50,13 @@ public class User {
     }
 
     public User(String identifier, String email, String password, String firstName, String lastName,
-                String citizenIdentification, String dateOfBirth, String phoneNumber) {
+                String citizenIdentification, String phoneNumber) {
         this.identifier = identifier;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.citizenIdentification = citizenIdentification;
-        this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
     }
 
@@ -119,14 +116,6 @@ public class User {
         this.citizenIdentification = citizenIdentification;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -159,7 +148,6 @@ public class User {
     public String toString() {
         return "User{" + "identifier='" + identifier + '\'' + ", email='" + email + '\'' + ", firstName='" +
                 firstName + '\'' + ", lastName='" + lastName + '\'' + ", citizenIdentification='" +
-                citizenIdentification + '\'' + ", dateOfBirth='" + dateOfBirth + '\'' + ", phoneNumber='" +
-                phoneNumber + '\'' + ", roles=" + roles + '}';
+                citizenIdentification + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", roles=" + roles + '}';
     }
 }
