@@ -69,7 +69,7 @@ public class UserController {
     try {
       userService.delete(id);
 
-      redirectAttributes.addFlashAttribute("message", "User " + id + " xoá thành công !");
+      redirectAttributes.addFlashAttribute("message", "User " + id + " đã xoá thành công !");
     } catch (UserNotFoundException e) {
       redirectAttributes.addFlashAttribute("message", e.getMessage());
     }
