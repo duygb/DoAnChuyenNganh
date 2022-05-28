@@ -21,7 +21,11 @@ PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/RoleRepository.jav
 ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/RoleRepositoryTests.java,f\0\f0e7fe5d9e2bfd9c0240c56cc6183b264e464187
 „
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/LibraBackendApplication.java,f\4\f46afcc1722fca6d9efa49ff4ce47797172473a0
-F
-LibraWebParent/pom.xml,4\9\4947687a1c94128aa0892eb9fe51ae5f773977b5
 {
 KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/MainController.java,e\6\e6f95e94eb9e989bcfce772c2bdbf3b2476fa079
+G
+LibraWebParent/mvnw.cmd,3\6\361e04e70bc231d376fdcbcc4fc5c3f6ff32b75e
+F
+LibraWebParent/pom.xml,4\9\4947687a1c94128aa0892eb9fe51ae5f773977b5
+‡
+WLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserNotFoundException.java,7\e\7eedbf53d70117727a85d9724b9d2285b57aea43

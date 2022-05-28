@@ -7,138 +7,143 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    @Column(length = 8, unique = true)
-    private String identifier; // thẻ thư viện
+  @Column(length = 8, unique = true)
+  private String identifier; // thẻ thư viện
 
-    @Column(length = 128, nullable = false, unique = true)
-    private String email;
+  @Column(length = 128, nullable = false, unique = true)
+  private String email;
 
-    @Column(length = 64, nullable = false)
-    private String password;
+  @Column(length = 64, nullable = false)
+  private String password;
 
-    @Column(name = "first_name", length = 100, nullable = false) // nvarchar 100, not null
-    @Nationalized
-    private String firstName;
+  @Column(name = "first_name", length = 100) //
+  @Nationalized
+  private String firstName;
 
-    @Column(name = "last_name", length = 45, nullable = false)
-    @Nationalized
-    private String lastName;
+  @Column(name = "last_name", length = 45)
+  @Nationalized
+  private String lastName;
 
-    @Column(name = "citizen_identification", length = 12, unique = true)
-    private String citizenIdentification;
+  @Column(name = "citizen_identification", length = 12, unique = true)
+  private String citizenIdentification;
 
-    @Column(name = "phone", length = 11, unique = true)
-    private String phoneNumber;
+  @Column(name = "phone", length = 11, unique = true)
+  private String phoneNumber;
 
-    private boolean enabled;
+  private boolean enabled;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+  @ManyToOne
+  @JoinColumn(name = "role_id")
+  private Role role;
 
-    public User() {
-    }
+  public User() {
+  }
 
-    public User(String email, String password, String firstName, String lastName) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  public User(String email, String password) {
+    this.email = email;
+    this.password = password;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public User(String email, String password, String firstName, String lastName) {
+    this.email = email;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public String getIdentifier() {
-        return identifier;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
+  public String getIdentifier() {
+    return identifier;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public String getCitizenIdentification() {
-        return citizenIdentification;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setCitizenIdentification(String citizenIdentification) {
-        this.citizenIdentification = citizenIdentification;
-    }
+  public String getCitizenIdentification() {
+    return citizenIdentification;
+  }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+  public void setCitizenIdentification(String citizenIdentification) {
+    this.citizenIdentification = citizenIdentification;
+  }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+  public boolean isEnabled() {
+    return enabled;
+  }
 
-    public Role getRole() {
-        return role;
-    }
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+  public Role getRole() {
+    return role;
+  }
 
-    @Override
-    public String toString() {
-        return "User{" + "identifier='" + identifier + '\'' + ", email='" + email + '\'' + ", firstName='"
-                + firstName + '\'' + ", lastName='" + lastName + '\'' + ", citizenIdentification='"
-                + citizenIdentification + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", role=" + role + '}';
-    }
+  public void setRole(Role role) {
+    this.role = role;
+  }
 
-    @Transient
-    public String getFullName() {
-        return lastName + " " + firstName;
-    }
+  @Override
+  public String toString() {
+    return "User{" + "identifier='" + identifier + '\'' + ", email='" + email + '\'' + ", firstName='"
+      + firstName + '\'' + ", lastName='" + lastName + '\'' + ", citizenIdentification='"
+      + citizenIdentification + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", role=" + role + '}';
+  }
+
+  @Transient
+  public String getFullName() {
+    return lastName + " " + firstName;
+  }
 }

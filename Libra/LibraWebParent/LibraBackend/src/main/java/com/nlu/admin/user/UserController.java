@@ -15,52 +15,65 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+  @Autowired
+  private UserService userService;
 
-    @GetMapping("/users")
-    public String listAll(Model model) {
-        List<User> listUsers = userService.listAll();
+  @GetMapping("/users")
+  public String listAll(Model model) {
+    List<User> listUsers = userService.listAll();
 
-        model.addAttribute("listUsers", listUsers);
+    model.addAttribute("listUsers", listUsers);
 
-        return "users";
+    return "users";
+  }
+
+  @GetMapping("/users/new")
+  public String newUser(Model model) {
+    User user = new User();
+    List<Role> listRoles = userService.listRoles();
+
+    user.setEnabled(true);
+
+    model.addAttribute("user", user);
+    model.addAttribute("listRoles", listRoles);
+    model.addAttribute("pageTitle", "Tạo mới User");
+
+    return "user_form";
+  }
+
+  @PostMapping("/users/save")
+  public String saveUser(User user, RedirectAttributes redirectAttributes) {
+    userService.save(user);
+
+    redirectAttributes.addFlashAttribute("message", "User đã được lưu thành công !");
+
+    return "redirect:/users";
+  }
+
+  @GetMapping("/users/{id}/enabled/{status}")
+  public String updateUserEnabledStatus(@PathVariable(name = "id") Integer id,
+                                        @PathVariable(name = "status") boolean enabled,
+                                        RedirectAttributes redirectAttributes) {
+    userService.updateUserEnabledStatus(id, enabled);
+
+    String status = enabled ? "kích hoạt" : "vô hiệu hoá";
+    String message = "User " + id + " đã được " + status;
+
+    redirectAttributes.addFlashAttribute("message", message);
+
+    return "redirect:/users";
+  }
+
+  @GetMapping("/users/delete/{id}")
+  public String deleteUser(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
+    try {
+      userService.delete(id);
+
+      redirectAttributes.addFlashAttribute("message", "User " + id + " xoá thành công !");
+    } catch (UserNotFoundException e) {
+      redirectAttributes.addFlashAttribute("message", e.getMessage());
     }
 
-    @GetMapping("/users/new")
-    public String newUser(Model model) {
-        User user = new User();
-        List<Role> listRoles = userService.listRoles();
-
-        user.setEnabled(true);
-
-        model.addAttribute("user", user);
-        model.addAttribute("listRoles", listRoles);
-        model.addAttribute("pageTitle", "Tạo mới User");
-
-        return "user_form";
-    }
-
-    @PostMapping("/users/save")
-    public String saveUser(User user, RedirectAttributes redirectAttributes) {
-        userService.save(user);
-
-        redirectAttributes.addFlashAttribute("message", "User đã được lưu thành công !");
-
-        return "redirect:/users";
-    }
-
-    @GetMapping("/users/{id}/enabled/{status}")
-    public String updateUserEnabledStatus(@PathVariable(name = "id") Integer id,
-                                          @PathVariable(name = "status") boolean enabled,
-                                          RedirectAttributes redirectAttributes) {
-        userService.updateUserEnabledStatus(id, enabled);
-
-        String status = enabled ? "kích hoạt" : "vô hiệu hoá";
-        String message = "User " + id + " đã được " + status;
-
-        redirectAttributes.addFlashAttribute("message", message);
-
-        return "redirect:/users";
-    }
+    return "redirect:/users";
+  }
 }

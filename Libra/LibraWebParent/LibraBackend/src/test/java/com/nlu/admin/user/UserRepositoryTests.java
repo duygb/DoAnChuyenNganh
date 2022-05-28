@@ -25,9 +25,10 @@ public class UserRepositoryTests {
     @Test
     public void testCreateNewUser() {
         Role admin = entityManager.find(Role.class, 3);
+        Role reader = entityManager.find(Role.class, 2);
 
-        User userAdmin = new User("admin1@gmail.com","admin","","");
-        userAdmin.setRole(admin);
+        User userAdmin = new User("long@gmail.com","long1234");
+        userAdmin.setRole(reader);
 
         User savedUser1 = userRepo.save(userAdmin);
 
