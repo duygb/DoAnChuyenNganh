@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -19,14 +20,15 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @GetMapping("/users")
+  @GetMapping("/users") // http://localhost:8080/MTShopAdmin/users
   public String listFirstPage(Model model) {
-    return listByPage(1, model);
+    return listByPage(1, model, null);
   }
 
   @GetMapping("/users/page/{pageNumber}")
-  public String listByPage(@PathVariable(name = "pageNumber") int pageNum, Model model) {
-    Page<User> page = userService.listByPage(pageNum);
+  public String listByPage(@PathVariable(name = "pageNumber") int pageNum, Model model,
+                           @RequestParam(value = "keyword", required = false) String keyword) {
+    Page<User> page = userService.listByPage(pageNum, keyword);
     List<User> listUsers = page.getContent();
 
     long startElementOfPage = (pageNum - 1) * UserService.USER_PER_PAGE + 1;
@@ -42,9 +44,11 @@ public class UserController {
     model.addAttribute("endCount", endElementOfPage);
     model.addAttribute("totalItems", page.getTotalElements());
     model.addAttribute("listUsers", listUsers);
+    model.addAttribute("keyword", keyword);
 
     return "users";
   }
+
 
   @GetMapping("/users/new")
   public String newUser(Model model) {

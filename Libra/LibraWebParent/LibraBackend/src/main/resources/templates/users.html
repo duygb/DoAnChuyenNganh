@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 
-<!-- use thymeleaf -->
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- use thymeleaf -->
 
 <head th:replace="fragments :: page_head('Quản lý người dùng - Libra Admin')"/>
 
@@ -12,7 +10,6 @@
   <!-- navigation -->
   <div th:replace="navigation :: menu"></div>
 
-  <!-- user form -->
   <div class="text-center mt-3 mb-3">
     <h2>Quản Lý Người Dùng</h2>
   </div>
@@ -24,9 +21,6 @@
   <!-- search -->
   <div>
     <form th:action="@{/users/page/1}" class="form-inline m-3">
-      <input type="hidden" name="sortField" th:value="${sortField}"/>
-      <input type="hidden" name="sortType" th:value="${sortType}"/>
-
       Tìm Kiếm: &nbsp;
       <input type="search" name="keyword" class="form-control" required placeholder="Search"/>
       &nbsp;&nbsp;
@@ -111,11 +105,11 @@
   </div>
 
   <!-- pagination -->
-  <div class="text-center m-1" th:if="${totalItems>0}">
+  <div class="text-center m-1" th:if="${totalItems > 0}">
     <span>#[[${startCount}]] đến #[[${endCount}]] của [[${totalItems}]] </span>
   </div>
 
-  <div class="text-center m-1" th:unless="${totalItems>0}">
+  <div class="text-center m-1" th:unless="${totalItems > 0}">
     <span>Không tìm thấy User</span>
   </div>
 
@@ -162,7 +156,6 @@
       </div>
     </div>
   </div>
-  <!--    confirm modal -->
 
   <!-- footer -->
   <div th:replace="fragments :: footer"></div>

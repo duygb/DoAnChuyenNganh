@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UserService {
 
-  public static final int USER_PER_PAGE = 1;
+  public static final int USER_PER_PAGE = 5;
 
   @Autowired
   private UserRepository userRepo;
@@ -49,13 +49,11 @@ public class UserService {
     userRepo.deleteById(id);
   }
 
-  public Page<User> listByPage(int pageNum) {
-    /*
-     * chỉ định trang và giới hạn số lượng của 1 trang
-     * tại sao pageNum - 1 vì page nó hiểu trang đầu là 0
-     */
-
+  public Page<User> listByPage(int pageNum, String keyword) {
     Pageable pageable = PageRequest.of(pageNum - 1, USER_PER_PAGE);
+
+    if (keyword != null)
+      return userRepo.findAll(keyword, pageable);
 
     return userRepo.findAll(pageable);
   }
