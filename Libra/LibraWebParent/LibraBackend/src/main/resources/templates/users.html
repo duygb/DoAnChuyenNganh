@@ -24,6 +24,9 @@
   <!-- search -->
   <div>
     <form th:action="@{/users/page/1}" class="form-inline m-3">
+      <input type="hidden" name="sortField" th:value="${sortField}"/>
+      <input type="hidden" name="sortType" th:value="${sortType}"/>
+
       Tìm Kiếm: &nbsp;
       <input type="search" name="keyword" class="form-control" required placeholder="Search"/>
       &nbsp;&nbsp;
@@ -36,7 +39,6 @@
       </button>
     </form>
   </div>
-
 
   <!-- table -->
   <div class="full-details">
@@ -90,7 +92,6 @@
     </table>
   </div>
 
-
   <div class="less-details">
     <div th:each="user: ${listUsers}" class="row m-1">
       <div>
@@ -110,36 +111,36 @@
   </div>
 
   <!-- pagination -->
-  <!--  <div class="text-center m-1" th:if="${totalItems>0}">-->
-  <!--    <span>#[[${startCount}]] đến #[[${endCount}]] của [[${totalItems}]] </span>-->
-  <!--  </div>-->
+  <div class="text-center m-1" th:if="${totalItems>0}">
+    <span>#[[${startCount}]] đến #[[${endCount}]] của [[${totalItems}]] </span>
+  </div>
 
-  <!--  <div class="text-center m-1" th:unless="${totalItems>0}">-->
-  <!--    <span>Không tìm thấy User</span>-->
-  <!--  </div>-->
+  <div class="text-center m-1" th:unless="${totalItems>0}">
+    <span>Không tìm thấy User</span>
+  </div>
 
-  <!--  <div th:if="${totalPages > 1}">-->
-  <!--    <nav>-->
-  <!--      <ul class="pagination justify-content-center flex-wrap">-->
-  <!--        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">-->
-  <!--          <a th:replace="fragments :: page_link(1, 'First')"></a>-->
-  <!--        </li>-->
-  <!--        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">-->
-  <!--          <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous')"></a>-->
-  <!--        </li>-->
-  <!--        <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"-->
-  <!--            th:each="i : ${#numbers.sequence(1,totalPages)}">-->
-  <!--          <a th:replace="fragments :: page_link(${i}, ${i})"></a>-->
-  <!--        </li>-->
-  <!--        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">-->
-  <!--          <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next')"></a>-->
-  <!--        </li>-->
-  <!--        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">-->
-  <!--          <a th:replace="fragments :: page_link(${totalPages}, 'Last')"></a>-->
-  <!--        </li>-->
-  <!--      </ul>-->
-  <!--    </nav>-->
-  <!--  </div>-->
+  <div th:if="${totalPages > 1}">
+    <nav>
+      <ul class="pagination justify-content-center flex-wrap">
+        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+          <a th:replace="fragments :: page_link(1, 'First')"></a>
+        </li>
+        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+          <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous')"></a>
+        </li>
+        <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+            th:each="i : ${#numbers.sequence(1,totalPages)}">
+          <a th:replace="fragments :: page_link(${i}, ${i})"></a>
+        </li>
+        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+          <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next')"></a>
+        </li>
+        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+          <a th:replace="fragments :: page_link(${totalPages}, 'Last')"></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <!-- confirm modal -->
   <div class="modal fade text-center" id="confirmModal">
