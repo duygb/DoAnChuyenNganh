@@ -18,7 +18,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @GetMapping("/users") // http://localhost:8080/MTShopAdmin/users
+  @GetMapping("/users") // http://localhost:8080/Libra/users
   public String listFirstPage(Model model) {
     return listByPage(1, model, null);
   }

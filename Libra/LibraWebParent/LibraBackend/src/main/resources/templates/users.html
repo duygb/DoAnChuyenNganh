@@ -63,24 +63,16 @@
         <td>[[${user.citizenIdentification}]]</td>
         <td>[[${user.phoneNumber}]]</td>
         <td>[[${user.role}]]</td>
-        <th:block th:if="${user.role.name != 'Admin'}">
-          <td>
-            <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-               th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
-            <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
-               th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Kích hoạt user"></a>
-          </td>
-          <td>
-            <a th:href="@{'/users/delete/' + ${user.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
-               th:userId="${user.id}" title="Xoá user"></a>
-          </td>
-        </th:block>
-        <th:block th:if="${user.role.name == 'Admin'}">
-          <td>
-          </td>
-          <td>
-          </td>
-        </th:block>
+        <td>
+          <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+             th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
+          <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
+             th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Kích hoạt user"></a>
+        </td>
+        <td>
+          <a th:href="@{'/users/delete/' + ${user.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
+             th:userId="${user.id}" title="Xoá user"></a>
+        </td>
       </tr>
       </tbody>
     </table>

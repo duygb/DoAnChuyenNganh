@@ -47,6 +47,6 @@ public class UserService {
     if (keyword != null)
       return userRepo.findAll(keyword, pageable);
 
-    return userRepo.findAll(pageable);
+    return userRepo.findAll("", pageable);
   }
 }
