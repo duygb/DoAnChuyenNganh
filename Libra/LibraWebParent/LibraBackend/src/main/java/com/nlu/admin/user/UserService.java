@@ -23,16 +23,8 @@ public class UserService {
   @Autowired
   private RoleRepository roleRepo;
 
-  public List<User> listAll() {
-    return (List<User>) userRepo.findAll();
-  }
-
   public List<Role> listRoles() {
     return (List<Role>) roleRepo.findAll();
-  }
-
-  public User save(User user) {
-    return userRepo.save(user);
   }
 
   public void updateUserEnabledStatus(Integer id, boolean enabled) {
