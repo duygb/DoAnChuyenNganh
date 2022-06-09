@@ -7,11 +7,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column(length = 8, unique = true)
+  @Column(length = 8)
   private String identifier; // thẻ thư viện
 
   @Column(length = 128, nullable = false, unique = true)
@@ -20,18 +21,18 @@ public class User {
   @Column(length = 64, nullable = false)
   private String password;
 
-  @Column(name = "first_name", length = 100) //
+  @Column(name = "first_name", length = 100, nullable = false)
   @Nationalized
   private String firstName;
 
-  @Column(name = "last_name", length = 45)
+  @Column(name = "last_name", length = 45, nullable = false)
   @Nationalized
   private String lastName;
 
-  @Column(name = "citizen_identification", length = 12, unique = true)
+  @Column(name = "citizen_identification", length = 12)
   private String citizenIdentification;
 
-  @Column(name = "phone", length = 11, unique = true)
+  @Column(name = "phone", length = 11)
   private String phoneNumber;
 
   private boolean enabled;
@@ -41,18 +42,6 @@ public class User {
   private Role role;
 
   public User() {
-  }
-
-  public User(String email, String password) {
-    this.email = email;
-    this.password = password;
-  }
-
-  public User(String email, String password, String firstName, String lastName) {
-    this.email = email;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
   }
 
   public Integer getId() {
@@ -137,9 +126,18 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{" + "identifier='" + identifier + '\'' + ", email='" + email + '\'' + ", firstName='"
-      + firstName + '\'' + ", lastName='" + lastName + '\'' + ", citizenIdentification='"
-      + citizenIdentification + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", role=" + role + '}';
+    return "User{" +
+      "id=" + id +
+      ", identifier='" + identifier + '\'' +
+      ", email='" + email + '\'' +
+      ", password='" + password + '\'' +
+      ", firstName='" + firstName + '\'' +
+      ", lastName='" + lastName + '\'' +
+      ", citizenIdentification='" + citizenIdentification + '\'' +
+      ", phoneNumber='" + phoneNumber + '\'' +
+      ", enabled=" + enabled +
+      ", role=" + role +
+      '}';
   }
 
   @Transient

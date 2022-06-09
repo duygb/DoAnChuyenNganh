@@ -18,15 +18,8 @@
 
 <body>
 
-<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-  <a th:class="text-white"
-     th:href="@{'/users/page/' + ${currentPage} + '&keyword=' + ${keyword != null ? keyword : ''}}">
-    [[${columnLabel}]]
-  </a>
-</th>
-
-<a th:fragment="page_link(currentPage, label)" class="page-link"
-   th:href="@{'/users/page/' + ${currentPage} +${keyword != null ? '&keyword=' + keyword : ''}}">
+<a th:fragment="page_link(currentPage, label, url)" class="page-link"
+   th:href="@{'/' + ${url} + '/page/' + ${currentPage} + ${keyword != null ? '&keyword=' + keyword : ''}}">
   [[${label}]]
 </a>
 
@@ -35,4 +28,5 @@
 </div>
 
 </body>
+
 </html>

@@ -4,29 +4,31 @@
 <body>
 
 <div th:fragment="menu">
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
+  <!-- navigation -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <!-- logo -->
     <a th:href="@{/}" class="navbar-brand">
       <img th:src="@{/images/logo.png}"/>
     </a>
-
     <!-- toggle -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <!-- điều hướng -->
     <div class="collapse navbar-collapse" id="topNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a th:href="@{/users}" class="nav-link">Người dùng</a>
-        </li>
-        <li class="nav-item">
           <a th:href="@{/librarians}" class="nav-link">Thủ thư</a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/borrows}" class="nav-link">Mượn sách</a>
+          <a th:href="@{/users}" class="nav-link">Người dùng</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/borrows}" class="nav-link">Mượn trả</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/books}" class="nav-link">Sách</a>
         </li>
       </ul>
     </div>

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: page_head('Quản lý người dùng - Libra Admin')"/>
@@ -8,10 +7,11 @@
 <div class="container-fluid">
 
   <!-- navigation -->
-  <div th:replace="navigation :: menu"></div>
+  <div th:replace="navigation::menu"></div>
 
-  <div class="text-center mt-3 mb-3">
-    <h2>Quản Lý Người Dùng</h2>
+  <div>
+    <h2 class="text-center mt-4">Quản Lý Thủ Thư</h2>
+    <a th:href="@{/librarians/new}" class="fas fa-user-plus fa-2x icon-dark ml-3"></a>
   </div>
 
   <div th:if="${message != null}" class="alert alert-success text-center">
@@ -20,7 +20,8 @@
 
   <!-- search -->
   <div>
-    <form th:action="@{/users/page/1}" class="form-inline m-3">
+    <form th:action="@{/librarians/page/1}" class="form-inline m-3">
+
       Tìm Kiếm: &nbsp;
       <input type="search" name="keyword" class="form-control" required placeholder="Search"/>
       &nbsp;&nbsp;
@@ -39,9 +40,7 @@
     <table class="table table-bordered table-striped table-hover table-responsive-xl">
       <thead class="thead-dark">
       <tr>
-        <th>Id</th>
-        <th>Thẻ thư viện</th>
-        <th>Email</th>
+        <th class="hideable-column">Email</th>
         <th>Tên</th>
         <th>Họ</th>
         <th>CMND</th>
@@ -54,42 +53,47 @@
 
       <!-- load user list -->
       <tbody>
-      <tr th:each="user: ${listUsers}">
-        <td>[[${user.id}]]</td>
-        <td>[[${user.identifier}]]</td>
-        <td>[[${user.email}]]</td>
-        <td>[[${user.firstName}]]</td>
-        <td>[[${user.lastName}]]</td>
-        <td>[[${user.citizenIdentification}]]</td>
-        <td>[[${user.phoneNumber}]]</td>
-        <td>[[${user.role}]]</td>
+      <tr th:each="librarian: ${listLibrarians}">
+        <td class="hideable-column">[[${librarian.email}]]</td>
+        <td>[[${librarian.firstName}]]</td>
+        <td>[[${librarian.lastName}]]</td>
+        <td>[[${librarian.citizenIdentification}]]</td>
+        <td>[[${librarian.phoneNumber}]]</td>
+        <td>[[${librarian.role}]]</td>
         <td>
-          <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-             th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
-          <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
-             th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Kích hoạt user"></a>
+          <a th:if="${librarian.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+             th:href="@{'/librarians/' + ${librarian.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
+          <a th:if="${librarian.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
+             th:href="@{'/librarians/' + ${librarian.id} + '/enabled/true'}" title="Kích hoạt user"></a>
         </td>
         <td>
-          <a th:href="@{'/users/delete/' + ${user.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
-             th:userId="${user.id}" title="Xoá user"></a>
+          <a th:href="@{'/librarians/edit/' + ${librarian.id}}" class="fas fa-edit fa-2x icon-green"
+             title="Chỉnh sửa user"></a>
+          <a th:href="@{'/librarians/delete/' + ${librarian.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
+             th:librarianId="${librarian.id}" title="Xoá user"></a>
         </td>
       </tr>
       </tbody>
+      <!-- load user list -->
+
     </table>
   </div>
+  <!-- table -->
 
   <div class="less-details">
-    <div th:each="user: ${listUsers}" class="row m-1">
-      <div>
-        <div>[[${user.fullName}]]</div>
-        <div>[[${user.role}]]</div>
+    <div th:each="librarian: ${listLibrarians}" class="row m-1">
+      <div class="col-8">
+        <div>[[${librarian.fullName}]]</div>
+        <div>[[${librarian.role}]]</div>
         <div>
-          <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-             th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
-          <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
-             th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Kích hoạt user"></a>
-          <a th:href="@{'/users/delete/' + ${user.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
-             th:userId="${user.id}" title="Xoá user"></a>
+          <a th:if="${librarian.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+             th:href="@{'/librarians/' + ${librarian.id} + '/enabled/false'}" title="Vô hiệu hoá user"></a>
+          <a th:if="${librarian.enabled == false}" class="fas fa-check-circle fa-2x icon-dark"
+             th:href="@{'/librarians/' + ${librarian.id} + '/enabled/true'}" title="Kích hoạt user"></a>
+          <a th:href="@{'/librarians/edit/' + ${librarian.id}}" class="fas fa-edit fa-2x icon-green"
+             title="Chỉnh sửa user"></a>
+          <a th:href="@{'/librarians/delete/' + ${librarian.id}}" class="fas fa-trash fa-2x icon-dark link-delete"
+             th:librarianId="${librarian.id}" title="Xoá user"></a>
         </div>
       </div>
       <div>&nbsp;</div>
@@ -97,11 +101,11 @@
   </div>
 
   <!-- pagination -->
-  <div class="text-center m-1" th:if="${totalItems > 0}">
+  <div class="text-center m-1" th:if="${totalItems>0}">
     <span>#[[${startCount}]] đến #[[${endCount}]] của [[${totalItems}]] </span>
   </div>
 
-  <div class="text-center m-1" th:unless="${totalItems > 0}">
+  <div class="text-center m-1" th:unless="${totalItems>0}">
     <span>Không tìm thấy User</span>
   </div>
 
@@ -109,20 +113,20 @@
     <nav>
       <ul class="pagination justify-content-center flex-wrap">
         <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-          <a th:replace="fragments :: page_link(1, 'First')"></a>
+          <a th:replace="fragments :: page_link(1, 'First', 'librarians')"></a>
         </li>
         <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-          <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous')"></a>
+          <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', 'librarians')"></a>
         </li>
         <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
             th:each="i : ${#numbers.sequence(1,totalPages)}">
-          <a th:replace="fragments :: page_link(${i}, ${i})"></a>
+          <a th:replace="fragments :: page_link(${i}, ${i}, 'librarians')"></a>
         </li>
         <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-          <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next')"></a>
+          <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', 'librarians')"></a>
         </li>
         <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-          <a th:replace="fragments :: page_link(${totalPages}, 'Last')"></a>
+          <a th:replace="fragments :: page_link(${totalPages}, 'Last', 'librarians')"></a>
         </li>
       </ul>
     </nav>
@@ -142,15 +146,17 @@
         </div>
 
         <div class="modal-footer">
-          <a class="btn btn-success" href="" id="yesButton">Yes</a>
+          <a class="btn btn-danger" href="" id="yesButton">Yes</a>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
         </div>
       </div>
     </div>
   </div>
+  <!--    confirm modal -->
 
   <!-- footer -->
   <div th:replace="fragments :: footer"></div>
+
 </div>
 
 <script type="text/javascript">
@@ -160,17 +166,17 @@
       e.preventDefault(); // Prevent a link from opening the URL
 
       link = $(this); // object jquery, can call all jQuery methods and functions but not DOM methods.
-      userId = link.attr("userId"); //  Return the value of an attribute
-      userId = link.attr("userId"); //  Return the value of an attribute
+      librarianId = link.attr("librarianId"); //  Return the value of an attribute
+      librarianId = link.attr("librarianId"); //  Return the value of an attribute
 
       $("#yesButton").attr("href", link.attr("href")); // set value of attribute
-      $("#confirmText").text("Bạn có muốn xoá user " + userId + " không ?");
+      $("#confirmText").text("Bạn có muốn xoá user " + librarianId + " không ?");
       $("#confirmModal").modal();
     });
   });
 
   function clearFilter() {
-    window.location = "[[@{/users/}]]";
+    window.location = "[[@{/librarians/}]]";
   }
 </script>
 

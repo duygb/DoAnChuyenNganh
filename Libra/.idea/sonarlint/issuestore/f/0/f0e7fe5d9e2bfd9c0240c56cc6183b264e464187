@@ -1,7 +1,11 @@
 
 4
-java:S5786"Remove this 'public' modifier.(ÃÆ÷Â
+java:S5786"Remove this 'public' modifier.(­™‚°
+3
+java:S5786""Remove this 'public' modifier.(¤ÂÜ7
 4
-java:S5786"Remove this 'public' modifier.(öàÇô
-C
-java:S2699"-Add at least one assertion to this test case.(ÃÆ÷Â
+java:S5786"Remove this 'public' modifier.(öàÇô
+4
+java:S5838"Use isPositive() instead.(¹‹ä‰ÿÿÿÿÿ
+B
+java:S2699""-Add at least one assertion to this test case.(¤ÂÜ7
