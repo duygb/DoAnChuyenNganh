@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -30,7 +29,7 @@ public class LibrarianService {
     private PasswordEncoder passwordEncoder;
 
     public Role getRole() {
-        return roleRepository.findById(2).get();
+        return roleRepository.findById(3).get();
     }
 
     public User save(User user) {

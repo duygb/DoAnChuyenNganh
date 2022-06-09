@@ -33,3 +33,15 @@ WLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/security/WebSecurityCon
 XLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/utils/UserNotFoundException.java,8\4\84131238451c47bf4597982b9afeaf2e2f6373ba
 …
 ULibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/RoleRepository.java,d\9\d986557d53a5599baa5174ca5f0660f724edd7a7
+i
+9LibraCommon/src/main/java/com/nlu/common/entity/Role.java,5\f\5fd4253adf6bcfc59814fbe7cc5e5a3492c4d139
+i
+9LibraCommon/src/main/java/com/nlu/common/entity/User.java,d\9\d9e2b478553f7cc208c39eeabb0d9f961e9825fc
+Š
+ZLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianRepository.java,2\5\2543c6b6b82aa1fb2c6df93c916307381b6ec819
+…
+ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/UserRepositoryTests.java,0\b\0b0a031290036ac52c6630432a3b2f50eccb18cd
+S
+#LibraWebParent/LibraBackend/pom.xml,7\1\71f939aabdaf0f18fd63c81ab5a8b6dc05e10b37
+Ž
+^LibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianRestController.java,6\4\64488ebd4bcf22dc58fad175a4edf108a7cb7f31

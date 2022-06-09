@@ -46,7 +46,7 @@ public class LibrarianController {
     model.addAttribute("listLibrarians", listLibrarians);
     model.addAttribute("keyword", keyword);
 
-    return "librarians";
+    return "librarians/librarians";
   }
 
   @GetMapping("/librarians/new")
@@ -59,7 +59,7 @@ public class LibrarianController {
     model.addAttribute("librarian", librarian);
     model.addAttribute("pageTitle", "Tạo người dùng mới");
 
-    return "librarian_form";
+    return "librarians/librarian_form";
   }
 
   @PostMapping("/librarians/save")
@@ -82,7 +82,7 @@ public class LibrarianController {
       model.addAttribute("librarian", librarian);
       model.addAttribute("pageTitle", "Sửa người dùng (ID: " + id + ")");
 
-      return "librarian_form";
+      return "librarians/librarian_form";
     } catch (UserNotFoundException e) {
       redirectAttributes.addFlashAttribute("message", e.getMessage());
 
