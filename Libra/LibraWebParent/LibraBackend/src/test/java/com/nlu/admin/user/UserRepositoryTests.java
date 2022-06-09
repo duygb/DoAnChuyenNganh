@@ -2,6 +2,7 @@ package com.nlu.admin.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.nlu.admin.librarian.UserRepository;
 import com.nlu.common.entity.Role;
 import com.nlu.common.entity.User;
 import org.junit.jupiter.api.Order;
