@@ -1,4 +1,4 @@
-package com.nlu.admin.librarian;
+package com.nlu.admin.role;
 
 import com.nlu.common.entity.Role;
 import org.springframework.data.repository.CrudRepository;

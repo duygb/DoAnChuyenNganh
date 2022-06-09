@@ -1,5 +1,6 @@
 package com.nlu.admin.librarian;
 
+import com.nlu.admin.role.RoleRepository;
 import com.nlu.admin.utils.UserNotFoundException;
 import com.nlu.common.entity.Role;
 import com.nlu.common.entity.User;
