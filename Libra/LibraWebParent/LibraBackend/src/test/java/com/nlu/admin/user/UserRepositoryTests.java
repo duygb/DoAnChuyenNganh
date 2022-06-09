@@ -1,7 +1,10 @@
 package com.nlu.admin.user;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.nlu.common.entity.Role;
 import com.nlu.common.entity.User;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,79 +17,116 @@ import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
 public class UserRepositoryTests {
-
   @Autowired
-  private UserRepository userRepo;
+  private UserRepository userRepository;
 
   @Autowired
   private TestEntityManager entityManager;
 
   @Test
-  public void testCreateNewUser() {
-    Role admin = entityManager.find(Role.class, 3);
-    Role reader = entityManager.find(Role.class, 2);
+  @Order(1)
+  public void testCreateNewUserWithOneRole() {
+    Role admin = entityManager.find(Role.class, 1);
 
-    User userAdmin = new User("long@gmail.com", "long1234");
-    userAdmin.setRole(reader);
+    User user = new User();
+    user.setEmail("admin1");
+    user.setPassword("admin");
+    user.setFirstName("admin");
+    user.setLastName("admin");
+    user.setEnabled(true);
+    user.setRole(admin);
 
-    User savedUser1 = userRepo.save(userAdmin);
+    User savedUser = userRepository.save(user);
 
-    assertThat(savedUser1.getId()).isGreaterThan(0);
+    assertThat(savedUser.getId()).isGreaterThan(0);
   }
 
   @Test
+  @Order(2)
   public void testGetUserById() {
-    User librarianUser = userRepo.findById(1).get();
-    assertThat(librarianUser.getEmail()).isEqualTo("admin1@gmail.com");
+    User user = userRepository.findById(1).get();
+
+    assertThat(user).isNotNull();
   }
 
   @Test
+  @Order(3)
   public void testUpdateUser() {
-    User librarianUser = userRepo.findById(1).get();
-    librarianUser.setEmail("long@gmail.com");
+    User user = userRepository.findById(1).get();
+    user.setFirstName("admin");
+    user.setLastName("admin");
+    user.setEnabled(true);
 
-    userRepo.save(librarianUser);
-
-    assertThat(librarianUser.getEmail()).isEqualTo("long@gmail.com");
+    User savedUser = userRepository.save(user);
+    assertThat(savedUser.isEnabled()).isTrue();
   }
 
+
   @Test
+  @Order(4)
+  @Rollback(true)
   public void testDeleteUser() {
-    User librarianUser = userRepo.findById(1).get();
+    User user = userRepository.findById(1).get();
 
-    userRepo.deleteById(librarianUser.getId());
+    userRepository.deleteById(user.getId());
   }
 
   @Test
+  @Order(5)
+  public void testGetUserByEmail() {
+    String email = "admin1";
+    User user = userRepository.getUserByEmail(email);
+
+    assertThat(user).isNotNull();
+  }
+
+  @Test
+  @Order(6)
+  public void testCountById() {
+    Integer id = 1;
+    Long countById = userRepository.countById(id);
+
+    assertThat(countById).isNotNull().isGreaterThan(0);
+  }
+
+  @Test
+  @Order(7)
+  public void testUpdateUserEnabledStatus() {
+    Integer id = 2;
+
+    userRepository.updateEnabledStatus(id, true);
+  }
+
+  @Test
+  @Order(8)
   public void testListFirstPage() {
     int pageNumber = 0;
-    int pageSize = 2;
+    int pageSize = 5;
 
     Pageable pageable = PageRequest.of(pageNumber, pageSize);
-    Page<User> page = userRepo.findAll(pageable);
+    Page<User> page = userRepository.findAll(pageable);
 
     List<User> listUsers = page.getContent();
 
     listUsers.forEach(user -> System.out.println(user));
 
-    assertThat(listUsers.size()).isEqualTo(pageSize);
+    assertThat(listUsers.size()).isGreaterThan(0);
   }
 
   @Test
+  @Order(9)
   public void testSearchUser() {
-    String keyword = "admin1";
+    String keyword = "admin";
 
     int pageNumber = 0;
-    int pageSize = 1;
+    int pageSize = 5;
 
     Pageable pageable = PageRequest.of(pageNumber, pageSize);
-    Page<User> page = userRepo.findAll(keyword, pageable);
+    Page<User> page = userRepository.findAll(keyword, pageable);
 
     List<User> listUsers = page.getContent();
 
