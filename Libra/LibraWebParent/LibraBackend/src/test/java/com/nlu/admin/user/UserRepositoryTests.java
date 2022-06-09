@@ -2,7 +2,7 @@ package com.nlu.admin.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.nlu.admin.librarian.UserRepository;
+import com.nlu.admin.librarian.LibrarianRepository;
 import com.nlu.common.entity.Role;
 import com.nlu.common.entity.User;
 import org.junit.jupiter.api.Order;
@@ -23,7 +23,7 @@ import java.util.List;
 @Rollback(false)
 public class UserRepositoryTests {
   @Autowired
-  private UserRepository userRepository;
+  private LibrarianRepository userRepository;
 
   @Autowired
   private TestEntityManager entityManager;
