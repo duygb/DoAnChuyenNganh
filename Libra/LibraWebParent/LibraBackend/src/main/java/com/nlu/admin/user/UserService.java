@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @Transactional
 public class UserService {
@@ -18,7 +20,7 @@ public class UserService {
   public static final int USER_PER_PAGE = 5;
 
   @Autowired
-  private UserRepository librarianRepo;
+  private UserRepository userRepoRepo;
 
   @Autowired
   private RoleRepository roleRepository;
@@ -27,26 +29,39 @@ public class UserService {
     return roleRepository.findById(2).get();
   }
 
+
+  public User create(User user) {
+    if (Objects.nonNull(userRepoRepo.findOneByCitizenIdentification(user.getCitizenIdentification()))){
+      return userRepoRepo.save(user);
+    }
+    return null;
+  }
+
+
   public void delete(Integer id) throws UserNotFoundException {
-    Long countById = librarianRepo.countById(id);
+    Long countById = userRepoRepo.countById(id);
 
     if (countById == null || countById == 0) {
       throw new UserNotFoundException("Could not find any user with ID" + id);
     }
 
-    librarianRepo.deleteById(id);
+    userRepoRepo.deleteById(id);
   }
 
   public void updateUserEnabledStatus(Integer id, boolean enabled) {
-    librarianRepo.updateEnabledStatus(id, enabled);
+    userRepoRepo.updateEnabledStatus(id, enabled);
   }
 
   public Page<User> listByPage(int pageNum, String keyword) {
     Pageable pageable = PageRequest.of(pageNum - 1, USER_PER_PAGE);
 
     if (keyword != null)
-      return librarianRepo.findAll(keyword, pageable);
+      return userRepoRepo.findAll(keyword, pageable);
 
-    return librarianRepo.findAll("", pageable);
+    return userRepoRepo.findAll("", pageable);
+  }
+
+  public boolean login(User user) {
+    return Objects.nonNull(userRepoRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword()));
   }
 }

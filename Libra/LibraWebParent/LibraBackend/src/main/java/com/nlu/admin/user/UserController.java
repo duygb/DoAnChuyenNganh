@@ -4,14 +4,16 @@ import com.nlu.admin.utils.UserNotFoundException;
 import com.nlu.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -74,4 +76,29 @@ public class UserController {
 
     return "redirect:/users";
   }
+
+  @PostMapping("/users/create")
+  @Transactional
+  public ResponseEntity<User> register(User user) {
+    User userAfterCreated = userService.create(user);
+    if (Objects.nonNull(userAfterCreated)){
+      return new ResponseEntity<User>(userAfterCreated, HttpStatus.CREATED);
+    }
+    return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+  }
+
+  @GetMapping("/users/login")
+  public String loginPage() {
+    return "login/signin";
+  }
+
+  @PostMapping("/users/login")
+  public String login(User user, RedirectAttributes redirectAttributes) {
+    if (userService.login(user)){
+      return "redirect:/";
+    }
+    redirectAttributes.addFlashAttribute("user", user);
+    return "redirect:/users/login";
+  }
+
 }
