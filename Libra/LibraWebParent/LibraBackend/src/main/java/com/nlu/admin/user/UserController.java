@@ -4,14 +4,17 @@ import com.nlu.common.entity.User;
 import com.nlu.common.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -67,7 +70,6 @@ public class UserController {
                                           @PathVariable(name = "status") boolean enabled,
                                           RedirectAttributes redirectAttributes) {
         userService.updateUserEnabledStatus(id, enabled);
-
         String status = enabled ? "kích hoạt" : "vô hiệu hoá";
         String message = "Người dùng có id là " + id + " đã được " + status;
 
@@ -75,4 +77,31 @@ public class UserController {
 
         return "redirect:/users";
     }
+
+  @GetMapping("/users/login")
+  public String loginPage() {
+    return "login/signin";
+  }
+
+  @PostMapping("/users/login")
+  public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    User userLogged = userService.login(user);
+    if (Objects.nonNull(userLogged)){
+      request.getSession().setAttribute("userLogged", userLogged);
+      if (userLogged.getRole().getId() != 1){
+        return "redirect:/";
+      }
+      redirectAttributes.addFlashAttribute("accessDenied", user);
+      return "redirect:/users/login";
+    }
+    redirectAttributes.addFlashAttribute("user", user);
+    return "redirect:/users/login";
+  }
+
+  @PostMapping("/users/logout")
+  public String logout(HttpServletRequest request) {
+    request.getSession().removeAttribute("user");
+    return "login/signin";
+  }
+
 }

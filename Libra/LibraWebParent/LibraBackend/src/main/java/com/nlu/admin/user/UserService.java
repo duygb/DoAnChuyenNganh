@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @Transactional
 public class UserService {
@@ -26,7 +28,7 @@ public class UserService {
     public Role getRole() {
         return roleRepo.findById(2).get();
     }
-
+    
     public Page<User> listByPage(int pageNum, String keyword) {
         Pageable pageable = PageRequest.of(pageNum - 1, USER_PER_PAGE);
 
@@ -48,5 +50,9 @@ public class UserService {
 
     public void updateUserEnabledStatus(Integer id, boolean enabled) {
         userRepo.updateEnabledStatus(id, enabled);
+    }
+    
+    public User login(User user) {
+        return userRepoRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 }
