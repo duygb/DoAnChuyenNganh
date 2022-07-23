@@ -21,8 +21,6 @@ F
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/LibraBackendApplication.java,f\4\f46afcc1722fca6d9efa49ff4ce47797172473a0
 …
 ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/RoleRepositoryTests.java,f\0\f0e7fe5d9e2bfd9c0240c56cc6183b264e464187
-‡
-WLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/security/WebSecurityConfig.java,6\8\6893d119273330ec85e0532a1323a607248c6bc4
 S
 #LibraWebParent/LibraBackend/pom.xml,7\1\71f939aabdaf0f18fd63c81ab5a8b6dc05e10b37
 …
@@ -39,8 +37,6 @@ XLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/security/WebSecurityCo
 VLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/LibraFrontendApplication.java,0\8\08a7d94c09dd307b5ca3ae138698ad8b78d6b1ab
 C
 LibraCommon/pom.xml,d\4\d4087470329ecf1acab916d6acfd320b58db88d3
-{
-KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/MainController.java,e\6\e6f95e94eb9e989bcfce772c2bdbf3b2476fa079
 i
 9LibraCommon/src/main/java/com/nlu/common/entity/Role.java,5\f\5fd4253adf6bcfc59814fbe7cc5e5a3492c4d139
 }
@@ -57,16 +53,10 @@ PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/role/RoleRepository.jav
 ZLibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/LibrarianRepositoryTests.java,1\1\11b5972de0d4d64fcb1c8147181d70197b94b265
 Š
 ZLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianRepository.java,2\5\2543c6b6b82aa1fb2c6df93c916307381b6ec819
-}
-MLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserService.java,5\c\5ca087229eb575796b05ff137476692cd091176f
 €
 PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserRepository.java,6\1\6169ae64c2ceaf168bcab1e6150fda7d8c2de72b
 i
 9LibraCommon/src/main/java/com/nlu/common/entity/User.java,d\9\d9e2b478553f7cc208c39eeabb0d9f961e9825fc
-‡
-WLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianService.java,0\d\0d2efd8b5e4b07f63182c62cb0c62d01683d002e
-Š
-ZLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianController.java,1\b\1bfda9cde3771dbd38b9e8862de0e06131967b49
 „
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/CategoryRepository.java,2\f\2f712031e299a63fe79f0984bd29fce717d59a22
 €
@@ -75,5 +65,3 @@ PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookRepository.jav
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookRestController.java,c\b\cb0f4e5a527c43a67be54ff2f86537128c5c4782
 {
 KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/FileUploadUtil.java,4\b\4b341da4119305cb33d8140d73a8023eb204dc49
-}
-MLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookService.java,d\4\d49e6ffcb87b8e8decd0ae1ef4bc77e7a8514d16

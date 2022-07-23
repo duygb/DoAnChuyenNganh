@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,35 +25,13 @@ public class LibrarianService {
     @Autowired
     private RoleRepository roleRepo;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public Role getRole() {
         return roleRepo.findById(3).get();
     }
 
     public User save(User user) {
-        boolean isUpdatingUser = (user.getId() != null);
-
-        if (isUpdatingUser) {
-            User existingUser = librarianRepo.findById(user.getId()).get();
-
-            if (user.getPassword().isEmpty()) {
-                user.setPassword(existingUser.getPassword());
-            } else {
-                encodePassword(user);
-            }
-
-        } else {
-            encodePassword(user);
-        }
 
         return librarianRepo.save(user);
-    }
-
-    private void encodePassword(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
     }
 
     public boolean isEmailUnique(Integer id, String email) {
