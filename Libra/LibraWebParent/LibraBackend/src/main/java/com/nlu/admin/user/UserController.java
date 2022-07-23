@@ -78,12 +78,12 @@ public class UserController {
         return "redirect:/users";
     }
 
-  @GetMapping("/users/login")
+  @GetMapping("/login")
   public String loginPage() {
     return "login/signin";
   }
 
-  @PostMapping("/users/login")
+  @PostMapping("/login")
   public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
     User userLogged = userService.login(user);
     if (Objects.nonNull(userLogged)){
@@ -92,16 +92,16 @@ public class UserController {
         return "redirect:/";
       }
       redirectAttributes.addFlashAttribute("accessDenied", user);
-      return "redirect:/users/login";
+      return "redirect:/login";
     }
     redirectAttributes.addFlashAttribute("user", user);
-    return "redirect:/users/login";
+    return "redirect:/login";
   }
 
-  @PostMapping("/users/logout")
+  @GetMapping("/logout")
   public String logout(HttpServletRequest request) {
-    request.getSession().removeAttribute("user");
-    return "login/signin";
+    request.getSession().removeAttribute("userLogged");
+    return "redirect:/login";
   }
 
 }
