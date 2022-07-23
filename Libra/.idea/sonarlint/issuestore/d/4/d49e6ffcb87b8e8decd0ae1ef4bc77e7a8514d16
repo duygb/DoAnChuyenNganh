@@ -1,0 +1,9 @@
+
+j
+java:S5361,"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶ì¸øÿÿÿÿ8¸şÖÊ¢0
+j
+java:S5361/"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¼Çš¢ıÿÿÿÿ8¹şÖÊ¢0
+Y
+java:S4973?"<Strings and Boxed types should be compared using "equals()".(¤Ä‹8Ÿ½ÙÉ¢0
+Y
+java:S2589="7Remove this expression which always evaluates to "true"(æÛòœùÿÿÿÿ8§½ÙÉ¢0
