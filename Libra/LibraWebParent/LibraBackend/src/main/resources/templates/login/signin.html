@@ -24,6 +24,8 @@
     <!-- Stylesheet -->
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
 
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,7 +42,7 @@
                      class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form th:action="@{/login}" method="post">
+                <form th:action="@{/users/login}" method="post">
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <p class="lead fw-normal mb-0 me-3" style="font-size: 50px">Đăng nhập</p>
                     </div>
@@ -75,8 +77,6 @@
                     <div class="text-center text-lg-start mt-4 pt-2" style="margin-top: 30px">
                         <button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem; margin-bottom:15px;">Đăng nhập</button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">Chưa có tài khoản? <a th:href="@{/register}"
-                                                                                          class="link-danger">Đăng ký</a></p>
                     </div>
 
                 </form>
