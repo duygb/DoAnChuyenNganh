@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 
@@ -93,12 +94,24 @@ public class UserController {
   }
 
   @PostMapping("/users/login")
-  public String login(User user, RedirectAttributes redirectAttributes) {
-    if (userService.login(user)){
-      return "redirect:/";
+  public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    User userLogged = userService.login(user);
+    if (Objects.nonNull(userLogged)){
+      request.getSession().setAttribute("userLogged", userLogged);
+      if (userLogged.getRole().getId() != 1){
+        return "redirect:/";
+      }
+      redirectAttributes.addFlashAttribute("accessDenied", user);
+      return "redirect:/users/login";
     }
     redirectAttributes.addFlashAttribute("user", user);
     return "redirect:/users/login";
+  }
+
+  @PostMapping("/users/logout")
+  public String logout(HttpServletRequest request) {
+    request.getSession().removeAttribute("user");
+    return "login/signin";
   }
 
 }

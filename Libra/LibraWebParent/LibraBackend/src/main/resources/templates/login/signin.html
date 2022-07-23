@@ -67,6 +67,12 @@
                             Email hoặc mật khẩu sai! Vui lòng nhập lại
                         </p>
                     </div>
+
+                    <div th:if="${accessDenied != null}" class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0" style="color: red;">
+                            Email hoặc mật khẩu sai! Vui lòng nhập lại
+                        </p>
+                    </div>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <input type="email" id="form3Example3" class="form-control form-control-lg"

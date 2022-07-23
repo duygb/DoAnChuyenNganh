@@ -61,7 +61,7 @@ public class UserService {
     return userRepoRepo.findAll("", pageable);
   }
 
-  public boolean login(User user) {
-    return Objects.nonNull(userRepoRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword()));
+  public User login(User user) {
+    return userRepoRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword());
   }
 }
