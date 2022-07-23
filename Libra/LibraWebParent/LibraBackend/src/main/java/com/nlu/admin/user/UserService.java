@@ -53,6 +53,6 @@ public class UserService {
     }
     
     public User login(User user) {
-        return userRepoRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword());
+        return userRepo.findOneByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 }
