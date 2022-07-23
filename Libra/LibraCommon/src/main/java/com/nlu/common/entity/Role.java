@@ -1,10 +1,12 @@
 package com.nlu.common.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
-import java.util.Objects;
 
+@Data
 @Entity
 @Table(name = "role")
 public class Role {
@@ -16,38 +18,6 @@ public class Role {
   @Column(length = 40, nullable = false, unique = true)
   @Nationalized
   private String name;
-
-  public Role() {
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Role role = (Role) o;
-    return id.equals(role.id);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id);
-  }
 
   @Override
   public String toString() {
