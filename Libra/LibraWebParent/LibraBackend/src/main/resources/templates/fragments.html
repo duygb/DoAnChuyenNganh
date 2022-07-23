@@ -30,12 +30,6 @@
   [[${label}]]
 </a>
 
-<!-- load photo image path -->
-<div th:fragment="user_photos" th:remove="tag">
-  <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-  <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 100px"/>
-</div>
-
 <!-- update status -->
 <div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
   <a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"

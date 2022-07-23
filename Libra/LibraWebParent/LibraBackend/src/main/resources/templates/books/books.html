@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: page_head('Quản lý sách - Libra Admin', 'none')"/>
+
+<body>
+<div class="container-fluid">
+
+    <!-- navigation -->
+    <div th:replace="navigation::menu"></div>
+
+    <!-- user form -->
+    <div>
+        <h2 class="text-center mt-4">Quản Lý Sách</h2>
+        <a th:href="@{/books/new}" class="fas fa-user-plus fa-2x icon-dark mr-2"></a>
+    </div>
+
+    <!-- search -->
+    <div th:replace="fragments :: search_form_and_message('/books/page/1')"/>
+
+    <!-- table -->
+    <div class="full-details">
+        <table class="table table-bordered table-striped table-hover table-responsive-xl">
+            <thead class="thead-dark">
+            <tr>
+                <th>Ảnh</th>
+                <th>ISBN</th>
+                <th>Tên</th>
+                <th class="hideable-column">Tên tác giả</th>
+                <th class="hideable-column">Số lượng</th>
+                <th class="hideable-column">Có sẵn</th>
+                <th>Thể loại</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <!-- load user list -->
+            <tbody>
+            <tr th:each="book: ${listBooks}">
+                <td>
+                    <img th:src="@{${book.photosImagePath}}" style="width: 100px" class="img-fluid"/>
+                </td>
+                <td>[[${book.isbn}]]</td>
+                <td>[[${book.name}]]</td>
+                <td class="hideable-column">[[${book.nameAuthor}]]</td>
+                <td class="hideable-column">[[${book.quantity}]]</td>
+                <td class="hideable-column">[[${book.available}]]</td>
+                <td>[[${book.categories}]]</td>
+                <td>
+                    <div th:replace="fragments :: status(${book.enabled}, 'Sách', '/books/' + ${book.id})"/>
+                </td>
+                <td>
+                    <div th:replace="fragments :: edit('Sách', '/books/edit/' + ${book.id})"/>
+                    &nbsp;
+                    <div th:replace="fragments :: delete('Sách', ${book.id}, '/books/delete/' + ${book.id}, true)"/>
+                </td>
+            </tr>
+            </tbody>
+            <!-- load user list -->
+
+        </table>
+    </div>
+    <!-- table -->
+
+    <div class="less-details">
+        <div th:each="book: ${listBooks}" class="row m-1">
+            <div class="col-4">
+                <img th:src="@{${book.photosImagePath}}" style="width: 100px" class="img-fluid"/>
+            </div>
+            <div class="col-8">
+                <div>[[${book.isbn}]]</div>
+                <div>[[${book.name}]]</div>
+                <div>[[${book.categories}]]</div>
+                <div>
+                    <div th:replace="fragments :: status(${book.enabled}, 'Sách', '/books/' + ${book.id})"/>
+                    &nbsp;
+                    <div th:replace="fragments :: edit('Sách', '/books/edit/' + ${book.id})"/>
+                    &nbsp;
+                    <div th:replace="fragments :: delete('Sách', ${book.id}, '/books/delete/' + ${book.id}, true)"/>
+                </div>
+            </div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+
+    <!-- pagination -->
+    <div th:replace="fragments :: pagination('/books', 'Sách')"></div>
+
+    <!-- confirm modal -->
+    <div th:replace="modal_fragments :: confirm_modal"></div>
+
+    <!-- footer -->
+    <div th:replace="fragments :: footer"></div>
+
+</div>
+
+<script type="text/javascript">
+    moduleURL = "[[@{/books/}]]";
+
+    $(document).ready(function () {
+        $(".link-delete").on("click", function (e) {
+            e.preventDefault();
+            showDeleteConfirmModal($(this), 'sách');
+        });
+    });
+</script>
+<script th:src="@{/js/common_list.js}"></script>
+</body>
+</html>
