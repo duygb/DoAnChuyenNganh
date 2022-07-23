@@ -6,13 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LibrarianRepository extends PagingAndSortingRepository<User, Integer> {
-  @Query("SELECT u FROM User u WHERE u.email = :email")
-  User getUserByEmail(@Param("email") String email);
+  User findByEmail(String email);
 
   Long countById(Integer id);
 

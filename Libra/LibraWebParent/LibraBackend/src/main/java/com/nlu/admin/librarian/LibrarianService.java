@@ -1,9 +1,9 @@
 package com.nlu.admin.librarian;
 
 import com.nlu.admin.role.RoleRepository;
-import com.nlu.admin.utils.UserNotFoundException;
 import com.nlu.common.entity.Role;
 import com.nlu.common.entity.User;
+import com.nlu.common.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,13 +24,13 @@ public class LibrarianService {
     private LibrarianRepository librarianRepo;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleRepository roleRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Role getRole() {
-        return roleRepository.findById(3).get();
+        return roleRepo.findById(3).get();
     }
 
     public User save(User user) {
@@ -58,7 +58,7 @@ public class LibrarianService {
     }
 
     public boolean isEmailUnique(Integer id, String email) {
-        User userByEmail = librarianRepo.getUserByEmail(email);
+        User userByEmail = librarianRepo.findByEmail(email);
 
         if (userByEmail == null) return true;
 
@@ -102,9 +102,5 @@ public class LibrarianService {
             return librarianRepo.findAll(keyword, pageable);
 
         return librarianRepo.findAll("",pageable);
-    }
-
-    public User getByEmail(String email) {
-        return librarianRepo.getUserByEmail(email);
     }
 }
