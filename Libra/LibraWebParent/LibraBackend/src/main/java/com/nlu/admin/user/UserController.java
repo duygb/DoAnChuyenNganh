@@ -1,7 +1,7 @@
 package com.nlu.admin.user;
 
-import com.nlu.admin.utils.UserNotFoundException;
 import com.nlu.common.entity.User;
+import com.nlu.common.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,62 +16,63 @@ import java.util.List;
 @Controller
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  @GetMapping("/users")
-  public String listFirstPage(Model model) {
-    return listByPage(1, model, null);
-  }
-
-  @GetMapping("/users/page/{pageNumber}")
-  public String listByPage(@PathVariable(name = "pageNumber") int pageNum, Model model,
-                           @RequestParam(value = "keyword", required = false) String keyword) {
-    Page<User> page = userService.listByPage(pageNum, keyword);
-    List<User> listUsers = page.getContent();
-
-    long startElementOfPage = (pageNum - 1) * UserService.USER_PER_PAGE + 1;
-    long endElementOfPage = startElementOfPage + UserService.USER_PER_PAGE - 1;
-
-    if (endElementOfPage > page.getTotalElements()) {
-      endElementOfPage = page.getTotalElements();
+    @GetMapping("/users")
+    public String listFirstPage(Model model) {
+        return listByPage(1, model, null);
     }
 
-    model.addAttribute("currentPage", pageNum);
-    model.addAttribute("totalPages", page.getTotalPages());
-    model.addAttribute("startCount", startElementOfPage);
-    model.addAttribute("endCount", endElementOfPage);
-    model.addAttribute("totalItems", page.getTotalElements());
-    model.addAttribute("listUsers", listUsers);
-    model.addAttribute("keyword", keyword);
+    @GetMapping("/users/page/{pageNumber}")
+    public String listByPage(@PathVariable(name = "pageNumber") int pageNum, Model model,
+                             @RequestParam(value = "keyword", required = false) String keyword) {
+        Page<User> page = userService.listByPage(pageNum, keyword);
+        List<User> listUsers = page.getContent();
 
-    return "users/users";
-  }
+        long startElementOfPage = (pageNum - 1) * UserService.USER_PER_PAGE + 1;
+        long endElementOfPage = startElementOfPage + UserService.USER_PER_PAGE - 1;
 
-  @GetMapping("/users/delete/{id}")
-  public String deleteUser(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
-    try {
-      userService.delete(id);
+        if (endElementOfPage > page.getTotalElements()) {
+            endElementOfPage = page.getTotalElements();
+        }
 
-      redirectAttributes.addFlashAttribute("message", "User " + id + " xoá thành công !");
-    } catch (UserNotFoundException e) {
-      redirectAttributes.addFlashAttribute("message", e.getMessage());
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("startCount", startElementOfPage);
+        model.addAttribute("endCount", endElementOfPage);
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listUsers", listUsers);
+        model.addAttribute("keyword", keyword);
+
+        return "users/users";
     }
 
-    return "redirect:/users";
-  }
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            userService.delete(id);
 
-  @GetMapping("/users/{id}/enabled/{status}")
-  public String updateUserEnabledStatus(@PathVariable(name = "id") Integer id,
-                                        @PathVariable(name = "status") boolean enabled,
-                                        RedirectAttributes redirectAttributes) {
-    userService.updateUserEnabledStatus(id, enabled);
+            redirectAttributes.addFlashAttribute("message", "Người dùng có id là " + id +
+                    " đã được xoá thành công !");
+        } catch (UserNotFoundException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        }
 
-    String status = enabled ? "kích hoạt" : "vô hiệu hoá";
-    String message = "User " + id + " đã được " + status;
+        return "redirect:/users";
+    }
 
-    redirectAttributes.addFlashAttribute("message", message);
+    @GetMapping("/users/{id}/enabled/{status}")
+    public String updateUserEnabledStatus(@PathVariable(name = "id") Integer id,
+                                          @PathVariable(name = "status") boolean enabled,
+                                          RedirectAttributes redirectAttributes) {
+        userService.updateUserEnabledStatus(id, enabled);
 
-    return "redirect:/users";
-  }
+        String status = enabled ? "kích hoạt" : "vô hiệu hoá";
+        String message = "Người dùng có id là " + id + " đã được " + status;
+
+        redirectAttributes.addFlashAttribute("message", message);
+
+        return "redirect:/users";
+    }
 }
