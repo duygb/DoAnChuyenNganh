@@ -101,6 +101,6 @@ public class UserController {
   @GetMapping("/logout")
   public String logout(HttpServletRequest request) {
     request.getSession().removeAttribute("userLogged");
-    return "redirect:/login";
+      return "redirect:/login";
   }
 }

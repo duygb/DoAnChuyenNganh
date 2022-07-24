@@ -33,8 +33,11 @@ public class UserController {
   public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
     User userLogged = userService.login(user);
     if (Objects.nonNull(userLogged)){
-      request.getSession().setAttribute("userLogged", userLogged);
-      return "redirect:/";
+      if (userLogged.getRole().getId() == 1){
+        return "redirect:/";
+      }
+      redirectAttributes.addFlashAttribute("accessDenied", user);
+      return "redirect:/login";
     }
     redirectAttributes.addFlashAttribute("user", user);
     return "redirect:/login";
@@ -43,7 +46,7 @@ public class UserController {
   @GetMapping("/logout")
   public String logout(HttpServletRequest request) {
     request.getSession().removeAttribute("userLogged");
-    return "redirect:/login";
+    return "redirect:/";
   }
 
   @PostMapping("/register")
