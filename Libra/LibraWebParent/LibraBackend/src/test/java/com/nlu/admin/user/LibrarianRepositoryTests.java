@@ -80,7 +80,7 @@ public class LibrarianRepositoryTests {
   @Order(5)
   public void testGetUserByEmail() {
     String email = "admin1";
-    User user = userRepository.findByEmail(email);
+    User user = userRepository.getUserByEmail(email);
 
     assertThat(user).isNotNull();
   }

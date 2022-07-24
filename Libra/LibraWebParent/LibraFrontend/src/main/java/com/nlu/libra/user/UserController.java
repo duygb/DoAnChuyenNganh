@@ -40,10 +40,10 @@ public class UserController {
     return "redirect:/login";
   }
 
-  @PostMapping("/logout")
+  @GetMapping("/logout")
   public String logout(HttpServletRequest request) {
-    request.getSession().removeAttribute("user");
-    return "signin";
+    request.getSession().removeAttribute("userLogged");
+    return "redirect:/login";
   }
 
   @PostMapping("/register")

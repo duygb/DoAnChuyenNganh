@@ -78,30 +78,29 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users/login")
-    public String loginPage() {
-        return "login/signin";
-    }
+  @GetMapping("/login")
+  public String loginPage() {
+    return "login/signin";
+  }
 
-    @PostMapping("/users/login")
-    public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        User userLogged = userService.login(user);
-        if (Objects.nonNull(userLogged)) {
-            request.getSession().setAttribute("userLogged", userLogged);
-            if (userLogged.getRole().getId() != 1) {
-                return "redirect:/";
-            }
-            redirectAttributes.addFlashAttribute("accessDenied", user);
-            return "redirect:/users/login";
-        }
-        redirectAttributes.addFlashAttribute("user", user);
-        return "redirect:/users/login";
+  @PostMapping("/login")
+  public String login(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    User userLogged = userService.login(user);
+    if (Objects.nonNull(userLogged)){
+      request.getSession().setAttribute("userLogged", userLogged);
+      if (userLogged.getRole().getId() != 1){
+        return "redirect:/";
+      }
+      redirectAttributes.addFlashAttribute("accessDenied", user);
+      return "redirect:/login";
     }
+    redirectAttributes.addFlashAttribute("user", user);
+    return "redirect:/login";
+  }
 
-    @PostMapping("/users/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().removeAttribute("user");
-        return "login/signin";
-    }
-
+  @GetMapping("/logout")
+  public String logout(HttpServletRequest request) {
+    request.getSession().removeAttribute("userLogged");
+    return "redirect:/login";
+  }
 }
