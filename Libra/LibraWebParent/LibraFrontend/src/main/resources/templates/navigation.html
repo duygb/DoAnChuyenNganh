@@ -23,8 +23,10 @@
                                 <ul class="nav navbar-nav">
                                     <li><a th:href="@{/}">Trang chủ</a></li>
                                     <li><a th:href="@{/contact}">Liên lạc</a></li>
-                                    <li><a th:href="@{/login}">Đăng nhập</a></li>
-                                    <li><a th:href="@{/register}">Đăng ký</a></li>
+                                    <li th:if="${session.userLogged == null}" style="position: absolute; right: 110px;"><a th:href="@{/login}">Đăng nhập</a></li>
+                                    <li th:if="${session.userLogged == null}" style="position: absolute; right: 10px;"><a th:href="@{/register}">Đăng ký</a></li>
+                                    <li th:if="${session.userLogged != null}" style="position: absolute; right: 110px;"><a th:text="${session.userLogged.firstName}"></a></li>
+                                    <li th:if="${session.userLogged != null}" style="position: absolute; right: 10px;"><a th:href="@{/logout}">Đăng xuất</a></li>
                                 </ul>
                             </div>
                         </div>
