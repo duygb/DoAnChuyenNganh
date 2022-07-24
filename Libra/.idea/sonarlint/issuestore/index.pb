@@ -29,8 +29,6 @@ ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/UserRepositoryTest
 ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/PasswordEncoderTest.java,7\d\7da613321a6eaad2c02d5409486d11fb4275f2d2
 „
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/borrow/BorrowController.java,d\a\dad671727fb762965f6797188c426c844cc33cf4
-|
-LLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/MainController.java,2\d\2dfb5de292ef8fe201cba4e60933bdba4d166f22
 ˆ
 XLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/security/WebSecurityConfig.java,3\8\38ee0954d1fca7e59404d7959d696c608cb18691
 †
