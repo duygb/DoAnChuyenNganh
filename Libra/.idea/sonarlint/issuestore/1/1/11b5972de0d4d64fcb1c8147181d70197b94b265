@@ -1,65 +1,33 @@
 
 4
 java:S5786!"Remove this 'public' modifier.(Æû¨ó
-4
-java:S5786!"Remove this 'public' modifier.(Æû¨ó
-9
-java:S57863"Remove this 'public' modifier.(ÙÍÙâúÿÿÿÿ
 9
 java:S57863"Remove this 'public' modifier.(ÙÍÙâúÿÿÿÿ
 3
 java:S5786;"Remove this 'public' modifier.(ãîÊ_
-3
-java:S5786;"Remove this 'public' modifier.(ãîÊ_
-9
-java:S5786I"Remove this 'public' modifier.(Ãç´§øÿÿÿÿ
 9
 java:S5786I"Remove this 'public' modifier.(Ãç´§øÿÿÿÿ
 4
 java:S5786Q"Remove this 'public' modifier.(ò‚ªØ
 @
 java:S5786Z"Remove this 'public' modifier.(âÅÂÿÿÿÿÿ8Ââ²¼”0
-4
-java:S5786Q"Remove this 'public' modifier.(ò‚ªØ
 ;
 java:S5786c"Remove this 'public' modifier.(üòçò8¬ï¶¼”0
 @
-java:S5786Z"Remove this 'public' modifier.(âÅÂÿÿÿÿÿ8Ââ²¼”0
-@
 java:S5786k"Remove this 'public' modifier.(ÉÀŸ¾ıÿÿÿÿ8•‰»¼”0
-;
-java:S5786c"Remove this 'public' modifier.(üòçò8¬ï¶¼”0
-;
-java:S5786{"Remove this 'public' modifier.(¿à©ç8ÒÚÈ¼”0
-@
-java:S5786k"Remove this 'public' modifier.(ÉÀŸ¾ıÿÿÿÿ8•‰»¼”0
-@
-java:S5786"Remove this 'public' modifier.(é–åÛøÿÿÿÿ8ê‰Ñ¼”0
 ;
 java:S5786{"Remove this 'public' modifier.(¿à©ç8ÒÚÈ¼”0
 @
 java:S5786"Remove this 'public' modifier.(é–åÛøÿÿÿÿ8ê‰Ñ¼”0
 /
 java:S5838."Use isPositive() instead.(ÛÓÜÃ
-/
-java:S5838."Use isPositive() instead.(ÛÓÜÃ
-6
-java:S5838^"Use isPositive() instead.(”åå8®ï¶¼”0
 6
 java:S5838^"Use isPositive() instead.(”åå8®ï¶¼”0
 ;
 java:S5838v"Use isPositive() instead.(ØÎüÿÿÿÿ8„©Ï¼”0
-;
-java:S5838v"Use isPositive() instead.(ØÎüÿÿÿÿ8„©Ï¼”0
-<
-java:S5838ˆ"Use isPositive() instead.(ØÎüÿÿÿÿ8òúù¼”0
 <
 java:S5838ˆ"Use isPositive() instead.(ØÎüÿÿÿÿ8òúù¼”0
 O
 java:S2699I"-Add at least one assertion to this test case.(Ãç´§øÿÿÿÿ8¾‹¥¼”0
-O
-java:S2699I"-Add at least one assertion to this test case.(Ãç´§øÿÿÿÿ8¾‹¥¼”0
-J
-java:S2699c"-Add at least one assertion to this test case.(üòçò8™‰»¼”0
 J
 java:S2699c"-Add at least one assertion to this test case.(üòçò8™‰»¼”0

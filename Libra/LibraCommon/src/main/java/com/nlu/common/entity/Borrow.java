@@ -2,11 +2,9 @@ package com.nlu.common.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -16,24 +14,28 @@ public class Borrow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    private Integer id;
 
-    @Column(nullable = false, unique = true)
-    @Nationalized
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(length = 2, nullable = false)
-    private byte quantity;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "borrow_book",
-            joinColumns = @JoinColumn(name = "borrow_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> books = new HashSet<>();
+    @Column(name = "loan_date")
+    private Date loanDate;
+
+    @Column(name = "returned_date")
+    private Date returnedDate;
+
+    private boolean enabled;
 
     @Override
     public String toString() {
-        return "Borrow{" + "name='" + name + '\'' + ", quantity=" + quantity + ", books=" + books + '}';
+        return "Borrow{" + "user=" + user + ", book=" + book + ", loanDate=" + loanDate +
+                ", returnedDate=" + returnedDate + ", enabled=" + enabled + '}';
     }
 }
+

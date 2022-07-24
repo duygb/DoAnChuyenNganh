@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head(${pageTitle}, 'none')"/>
+
+<body>
+<div class="container-fluid">
+
+    <!-- navigation -->
+    <div th:replace="navigation::menu"></div>
+
+    <!-- user form -->
+    <div class="mb-5">
+        <h2>Quản Lý Mượn Sách | [[${pageTitle}]]</h2>
+    </div>
+    <!-- user form -->
+
+    <form th:action="@{/borrows/save}" method="post" style="max-width: 700px; margin: 0 auto"
+          th:object="${borrow}">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Tên người mượn</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{user}" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Tên sách</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{book}" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Ngày mượn</label>
+                <div class="col-sm-8">
+                    <!-- map attribute with entity -->
+                    <input type="date" class="form-control" th:field="*{loanDate}"
+                           oninput="checkValidReturnDate(document.getElementById('returnedDate'))"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Ngày trả</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" th:field="*{returnedDate}"
+                           oninput="checkValidReturnDate(this)"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Kích hoạt:</label>
+                <div class="col-sm-8 mt-2">
+                    <input type="checkbox" th:field="*{enabled}"/>
+                </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Save" class="btn btn-primary m-3"/>
+                <input type="button" value="Cancel" class="btn btn-secondary" id="btnCancel">
+            </div>
+        </div>
+    </form>
+
+    <!-- modal -->
+    <div th:replace="modal_fragments :: modal_dialog"/>
+
+    <!-- footer -->
+    <div th:replace="fragments :: footer"/>
+
+</div>
+<script type="text/javascript">
+    moduleURL = "[[@{/borrows}]]";
+
+    function checkValidReturnDate(returnDate) {
+        if (returnDate.value <= $("#loanDate").val()) {
+            returnDate.setCustomValidity("Ngày trả sách phải lớn hơn ngày mượn sách!");
+        } else {
+            returnDate.setCustomValidity("");
+        }
+    }
+</script>
+<script th:src="@{/js/common_form.js}"></script>
+</body>
+</html>

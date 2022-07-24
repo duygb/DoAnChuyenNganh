@@ -1,0 +1,7 @@
+
+[
+java:S4684W"@Replace this persistent entity with a simple POJO or DTO object.(·à£îüÿÿÿÿ
+P
+java:S2441Z":Make "User" serializable or don't store it in the session.(ü‘óÂ
+V
+java:S2184$"@Cast one of the operands of this addition operation to a "long".(ïÅ½
