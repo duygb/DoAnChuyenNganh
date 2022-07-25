@@ -88,7 +88,7 @@ public class UserController {
     User userLogged = userService.login(user);
     if (Objects.nonNull(userLogged)){
       request.getSession().setAttribute("userLogged", userLogged);
-      if (userLogged.getRole().getId() != 1){
+      if (userLogged.getRole().getId() != 2){
         return "redirect:/";
       }
       redirectAttributes.addFlashAttribute("accessDenied", user);

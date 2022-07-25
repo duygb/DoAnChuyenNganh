@@ -1,7 +1,6 @@
 package com.nlu.libra.book;
 
 import com.nlu.common.entity.Book;
-import com.nlu.common.entity.Category;
 import com.nlu.common.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -50,14 +50,15 @@ public class BookController {
     }
 
     @GetMapping("/borrow/edit/{id}")
-    public String viewBorrow(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+    public String viewBorrow(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes,
+                             HttpServletRequest request) {
+        if (request.getSession().getAttribute("userLogged") == null) {
+            return "redirect:/login";
+        }
         try {
             Book book = bookService.get(id);
-//            List<Category> listCategories = bookService.listCategories();
 
             model.addAttribute("book", book);
-//            model.addAttribute("listCategories", listCategories);
-            model.addAttribute("pageTitle", "Sửa sách (ID: " + id + ")");
 
             return "borrows";
         } catch (BookNotFoundException e) {
@@ -68,7 +69,10 @@ public class BookController {
     }
 
     @GetMapping("/return")
-    public String viewReturn() {
+    public String viewReturn(HttpServletRequest request) {
+        if (request.getSession().getAttribute("userLogged") == null) {
+            return "redirect:/login";
+        }
         return "returns";
     }
 }

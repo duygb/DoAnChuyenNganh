@@ -61,8 +61,6 @@ QLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/borrow/BorrowService.ja
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/borrow/BorrowRepository.java,d\9\d93907b87b58caa14042bb6766edf071f48819db
 Ñ
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/borrow/BorrowController.java,d\a\dad671727fb762965f6797188c426c844cc33cf4
-{
-KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/MainController.java,e\6\e6f95e94eb9e989bcfce772c2bdbf3b2476fa079
 w
 GLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/MvcConfig.java,c\3\c31b0f8a94db930703904788afa01784259dcc51
 Ü
@@ -93,5 +91,3 @@ MLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookService.java,
 NLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookService.java,b\5\b5580d8135f3dc3a333333a522279d2adcb9c3da
 Ä
 PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookController.java,5\b\5b8a1c5e3544a191c6e2e81f4eb92e4869e86659
-Å
-QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookController.java,0\f\0fb2e57a43e7e3161a8d0db8338fcf44e6193ed1

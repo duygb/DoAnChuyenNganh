@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MainController {
 
     @GetMapping("")
-    public String viewHomePage( HttpServletRequest request) {
+    public String viewHomePage(HttpServletRequest request) {
         if (request.getSession().getAttribute("userLogged") != null){
             return "index";
         }
