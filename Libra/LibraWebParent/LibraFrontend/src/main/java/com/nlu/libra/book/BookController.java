@@ -45,4 +45,14 @@ public class BookController {
 
         return "books";
     }
+
+    @GetMapping("/borrow")
+    public String viewBorrow() {
+        return "borrows";
+    }
+
+    @GetMapping("/return")
+    public String viewReturn() {
+        return "returns";
+    }
 }

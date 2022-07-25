@@ -81,7 +81,5 @@ QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookRepository.ja
 NLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookService.java,b\5\b5580d8135f3dc3a333333a522279d2adcb9c3da
 Å
 QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/user/UserController.java,6\1\61ffd4e75275911888a79e94328c1a7b8555194d
-Å
-QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookController.java,0\f\0fb2e57a43e7e3161a8d0db8338fcf44e6193ed1
 |
 LLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/MainController.java,2\d\2dfb5de292ef8fe201cba4e60933bdba4d166f22

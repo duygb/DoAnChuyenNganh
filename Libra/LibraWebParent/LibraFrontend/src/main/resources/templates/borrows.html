@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: page_head('Mượn sách - Libraria')"/>
+<body>
+
+<!-- Header Section -->
+<div th:replace="navigation :: menu"/>
+
+<section class="page-banner services-banner">
+    <div class="container">
+        <div class="banner-header">
+            <h2>MƯỢN SÁCH</h2>
+            <span class="underline center"></span>
+        </div>
+    </div>
+</section>
+
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="checkout-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <article class="page type-page status-publish hentry">
+                                <div class="entry-content">
+                                    <div class="woocommerce">
+                                        <form action="http://libraria.demo.presstigers.com/checkout.html"
+                                              class="checkout woocommerce-checkout" method="post" name="checkout">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <h2>Mượn sách</h2>
+                                                    <span class="underline left"></span>
+                                                    <div class="woocommerce-checkout-review-order" id="order_review">
+                                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="product-name">Thông tin sách</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="cart_item">
+                                                                <td class="product-name">
+                                                                    <span class="woocommerce-product-amount">Tên sách</span>
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span class="woocommerce-Price-amount amount">hello</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="cart_item">
+                                                                <td class="product-name">
+                                                                    <span class="woocommerce-product-amount">Tên tác giả</span>
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span class="woocommerce-Price-amount amount">ngọc</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="cart_item">
+                                                                <td class="product-name">
+                                                                    <span class="woocommerce-product-amount">Tên nhà xuất bản</span>
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span class="woocommerce-Price-amount amount">hà nôi</span>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr class="cart-subtotal">
+                                                                <td class="product-name">
+                                                                    <span class="woocommerce-product-amount">Ngày mượn</span>
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <input type="date"
+                                                                           class="woocommerce-Price-amount amount">
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="cart-shipping">
+                                                                <td class="product-name">
+                                                                    <span class="woocommerce-product-amount">Ngày trả</span>
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <input type="date"
+                                                                           class="woocommerce-Price-amount amount">
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="order-total">
+                                                                <th>
+                                                                    <input type="submit" value="Xác nhận"
+                                                                           class="btn btn-primary">
+                                                                </th>
+                                                                <th>
+                                                                    <input type="button" value="Trở về"
+                                                                           class="btn btn-primary">
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- .entry-content -->
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments :: footer"/>
+
+<!-- jquery/js -->
+<div th:replace="fragments :: script"/>
+
+</body>
+</html>

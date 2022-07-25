@@ -40,12 +40,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-6">
-                                   <div class="form-group">
-                                       <button type="button" class="btn btn-secondary"
-                                               onclick="clearFilter()" title="Xoá">
-                                           <i class="fas fa-eraser"></i>
-                                       </button>
-                                   </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-secondary"
+                                                onclick="clearFilter()" title="Xoá">
+                                            <i class="fas fa-eraser"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -65,30 +65,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="booksmedia-fullwidth">
-                        <ul>
-                            <li th:each="book : ${listBooks}">
-                                <figure>
+                    <form th:action="@{/borrow}">
+                        <div class="booksmedia-fullwidth">
+                            <ul>
+                                <li th:each="book : ${listBooks}">
+                                    <figure>
                                     <span>
                                         <img th:src="@{${book.photosImagePath}}"/>
                                     </span>
-                                    <figcaption>
-                                        <header>
-                                            <h4><span>[[${book.name}]]</span></h4>
-                                            <p><strong>Tác giả:</strong> [[${book.nameAuthor}]]</p>
-                                            <p><strong>ISBN:</strong> [[${book.isbn}]]</p>
-                                        </header>
-                                        <p><strong>Năm xuất bản:</strong> [[${book.printYear}]]</p>
-                                        <p><strong>Nhà xuất bản:</strong> [[${book.publisher}]]</p>
-                                        <p><strong>Còn lại:</strong> [[${book.available}]]</p>
-                                        <div class="actions">
-                                            <button type="submit" class="btn btn-primary">Mượn sách</button>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                        </ul>
-                    </div>
+                                        <figcaption>
+                                            <header>
+                                                <h4><span>[[${book.name}]]</span></h4>
+                                                <p><strong>Tác giả:</strong> [[${book.nameAuthor}]]</p>
+                                                <p><strong>ISBN:</strong> [[${book.isbn}]]</p>
+                                            </header>
+                                            <p><strong>Năm xuất bản:</strong> [[${book.printYear}]]</p>
+                                            <p><strong>Nhà xuất bản:</strong> [[${book.publisher}]]</p>
+                                            <p><strong>Còn lại:</strong> [[${book.available}]]</p>
+                                            <div class="actions">
+                                                <button type="submit" class="btn btn-primary">Mượn sách</button>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
                     <div th:replace="fragments :: pagination('/books', 'Sách')"/>
                 </div>
             </div>
