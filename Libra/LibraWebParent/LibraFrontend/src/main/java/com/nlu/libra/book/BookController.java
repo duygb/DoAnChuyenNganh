@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -47,12 +48,18 @@ public class BookController {
     }
 
     @GetMapping("/borrow")
-    public String viewBorrow() {
+    public String viewBorrow(HttpServletRequest request) {
+        if (request.getSession().getAttribute("userLogged") == null){
+            return "redirect:/login";
+        }
         return "borrows";
     }
 
     @GetMapping("/return")
-    public String viewReturn() {
+    public String viewReturn(HttpServletRequest request) {
+        if (request.getSession().getAttribute("userLogged") == null){
+            return "redirect:/login";
+        }
         return "returns";
     }
 }
