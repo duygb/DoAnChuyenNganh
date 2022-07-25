@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Sách - Libraria')"/>
+<body>
+
+<!-- Header Section -->
+<div th:replace="navigation :: menu"/>
+
+<!-- Start: Page Banner -->
+<section class="page-banner services-banner">
+    <div class="container">
+        <div class="banner-header">
+            <h2>LIBRARIA LIBRARY</h2>
+            <span class="underline center"></span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Banner -->
+
+<!-- Start: Products Section -->
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="books-full-width">
+                <div class="container">
+                    <!-- Start: Search Section -->
+                    <section class="search-filters">
+                        <div class="filter-box">
+                            <h3>Welcome To Libraria Library</h3>
+                            <form th:action="@{'/books/page/1'}" method="get">
+                                <div class="col-md-8 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Nhập từ khoá" id="keywords"
+                                               name="keyword" type="search">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="submit" value="Tìm kiếm">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                   <div class="form-group">
+                                       <button type="button" class="btn btn-secondary"
+                                               onclick="clearFilter()" title="Xoá">
+                                           <i class="fas fa-eraser"></i>
+                                       </button>
+                                   </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clear"></div>
+                    </section>
+                    <div th:if="${message != null}" class="alert alert-success text-center">
+                        [[${message}]]
+                    </div>
+                    <!-- End: Search Section -->
+
+                    <div class="filter-options margin-list">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-3">
+                                <select name="category" id="category">
+                                    <option selected>Tất cả thể loại</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booksmedia-fullwidth">
+                        <ul>
+                            <li th:each="book : ${listBooks}">
+                                <figure>
+                                    <span>
+                                        <img th:src="@{${book.photosImagePath}}"/>
+                                    </span>
+                                    <figcaption>
+                                        <header>
+                                            <h4><span>[[${book.name}]]</span></h4>
+                                            <p><strong>Tác giả:</strong> [[${book.nameAuthor}]]</p>
+                                            <p><strong>ISBN:</strong> [[${book.isbn}]]</p>
+                                        </header>
+                                        <p><strong>Năm xuất bản:</strong> [[${book.printYear}]]</p>
+                                        <p><strong>Nhà xuất bản:</strong> [[${book.publisher}]]</p>
+                                        <p><strong>Còn lại:</strong> [[${book.available}]]</p>
+                                        <div class="actions">
+                                            <button type="submit" class="btn btn-primary">Mượn sách</button>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
+                    <div th:replace="fragments :: pagination('/books', 'Sách')"/>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments :: footer"/>
+
+<script th:src="@{/js/common_list.js}"></script>
+
+<!-- jquery/js -->
+<div th:replace="fragments :: script"/>
+
+<script>
+    moduleURL = "[[@{/books/}]]";
+</script>
+
+</body>
+
+
+</html>

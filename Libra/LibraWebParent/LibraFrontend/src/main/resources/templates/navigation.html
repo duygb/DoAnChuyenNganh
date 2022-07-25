@@ -12,7 +12,7 @@
                                 <div class="navbar-brand">
                                     <h1>
                                         <a th:href="@{/}">
-                                            <img src="images/libraria-logo-v1.png" alt="LIBRA"/>
+                                            <img th:src="@{/images/logo.png}"/>
                                         </a>
                                     </h1>
                                 </div>
@@ -22,7 +22,10 @@
                             <div class="navbar-collapse hidden-sm hidden-xs">
                                 <ul class="nav navbar-nav">
                                     <li><a th:href="@{/}">Trang chủ</a></li>
-                                    <li><a th:href="@{/contact}">Liên lạc</a></li>
+                                    <li><a th:href="@{/books}">Sách</a></li>
+                                    <li><a href="#">Giới thiệu</a></li>
+                                    <li><a href="#">Nội quy</a></li>
+                                    <li><a th:href="@{/contact}">Liên hệ</a></li>
                                     <li th:if="${session.userLogged == null}" style="position: absolute; right: 110px;"><a th:href="@{/login}">Đăng nhập</a></li>
                                     <li th:if="${session.userLogged == null}" style="position: absolute; right: 10px;"><a th:href="@{/register}">Đăng ký</a></li>
                                     <li th:if="${session.userLogged != null}" style="position: absolute; right: 110px;"><a th:text="${session.userLogged.firstName}"></a></li>
@@ -40,7 +43,10 @@
                                     <a href="#" class="close"></a>
                                 </li>
                                 <li><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/contact}">Liên lạc</a></li>
+                                <li><a th:href="@{/books}">Sách</a></li>
+                                <li><a href="#">Giới thiệu</a></li>
+                                <li><a href="#">Nội quy</a></li>
+                                <li><a th:href="@{/contact}">Liên hệ</a></li>
                                 <li><a th:href="@{/login}">Đăng nhập</a></li>
                                 <li><a th:href="@{/register}">Đăng ký</a></li>
                             </ul>
