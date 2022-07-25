@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head('Mượn sách - Libraria')"/>
+
 <body>
 
-<!-- Header Section -->
 <div th:replace="navigation :: menu"/>
 
 <section class="page-banner services-banner">
@@ -25,8 +25,9 @@
                             <article class="page type-page status-publish hentry">
                                 <div class="entry-content">
                                     <div class="woocommerce">
-                                        <form action="http://libraria.demo.presstigers.com/checkout.html"
-                                              class="checkout woocommerce-checkout" method="post" name="checkout">
+                                        <form th:action="@{/borrow/save}" class="checkout woocommerce-checkout"
+                                              method="post" name="checkout" th:object="${book}">
+                                            <input type="hidden" th:field="*{id}"/>
                                             <div class="row">
                                                 <div class="col-sm-8">
                                                     <h2>Mượn sách</h2>
@@ -44,7 +45,7 @@
                                                                     <span class="woocommerce-product-amount">Tên sách</span>
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <span class="woocommerce-Price-amount amount">hello</span>
+                                                                    <span class="woocommerce-Price-amount amount">[[${book.name}]]</span>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cart_item">
@@ -52,15 +53,15 @@
                                                                     <span class="woocommerce-product-amount">Tên tác giả</span>
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <span class="woocommerce-Price-amount amount">ngọc</span>
+                                                                    <span class="woocommerce-Price-amount amount">[[${book.nameAuthor}]]</span>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cart_item">
                                                                 <td class="product-name">
-                                                                    <span class="woocommerce-product-amount">Tên nhà xuất bản</span>
+                                                                    <span class="woocommerce-product-amount">Nhà xuất bản</span>
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <span class="woocommerce-Price-amount amount">hà nôi</span>
+                                                                    <span class="woocommerce-Price-amount amount">[[${book.publisher}]]</span>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -90,7 +91,7 @@
                                                                 </th>
                                                                 <th>
                                                                     <input type="button" value="Trở về"
-                                                                           class="btn btn-primary">
+                                                                           class="btn btn-primary" id="btnReturn">
                                                                 </th>
                                                             </tr>
                                                             </tfoot>
@@ -116,5 +117,17 @@
 <!-- jquery/js -->
 <div th:replace="fragments :: script"/>
 
+<script type="text/javascript">
+    url = "[[@{/books}]]";
+
+    $(document).ready(function () {
+        // navigate when pressing cancel button
+        $("#btnReturn").on("click", function () {
+            window.location = url;
+        });
+    });
+</script>
+
 </body>
+
 </html>

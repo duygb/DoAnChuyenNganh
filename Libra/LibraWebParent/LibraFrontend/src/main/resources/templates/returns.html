@@ -42,6 +42,8 @@
                                                             </p>
                                                             <input type="submit" class="btn btn-default" name="Login"
                                                                    value="Xác nhận">
+                                                            <input type="button" value="Trở về"
+                                                                   class="btn btn-primary" id="btnCancel">
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
@@ -64,6 +66,17 @@
 
 <!-- jquery/js -->
 <div th:replace="fragments :: script"/>
+
+<script type="text/javascript">
+    moduleURL = "[[@{/books}]]";
+
+    $(document).ready(function () {
+        // navigate when pressing cancel button
+        $("#btnCancel").on("click", function () {
+            window.location = moduleURL;
+        });
+    });
+</script>
 
 </body>
 </html>

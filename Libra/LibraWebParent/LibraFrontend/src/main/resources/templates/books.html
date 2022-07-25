@@ -65,10 +65,10 @@
                             </div>
                         </div>
                     </div>
-                    <form th:action="@{/borrow}">
-                        <div class="booksmedia-fullwidth">
-                            <ul>
-                                <li th:each="book : ${listBooks}">
+                    <div class="booksmedia-fullwidth">
+                        <ul>
+                            <li th:each="book : ${listBooks}">
+                                <a th:href="@{'/borrow/edit/' + ${book.id}}">
                                     <figure>
                                     <span>
                                         <img th:src="@{${book.photosImagePath}}"/>
@@ -87,10 +87,10 @@
                                             </div>
                                         </figcaption>
                                     </figure>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <div th:replace="fragments :: pagination('/books', 'Sách')"/>
                 </div>
             </div>
