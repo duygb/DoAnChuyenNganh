@@ -1,0 +1,13 @@
+
+[
+java:S4684!"@Replace this persistent entity with a simple POJO or DTO object.(·à£îüÿÿÿÿ
+V
+java:S46845"@Replace this persistent entity with a simple POJO or DTO object.(û–¢
+P
+java:S24418":Make "User" serializable or don't store it in the session.(›÷ˆ
+[
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ
+f
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8ë€£0
+w
+java:S1128"URemove this unused import 'org.springframework.transaction.annotation.Transactional'.(ğùçøùÿÿÿÿ8ë€£0

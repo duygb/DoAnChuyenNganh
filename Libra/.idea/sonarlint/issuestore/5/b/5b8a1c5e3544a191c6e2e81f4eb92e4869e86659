@@ -1,0 +1,11 @@
+
+K
+java:S2209'"5Change this instance-reference to a static reference.(ú‰ã­
+P
+java:S2209("5Change this instance-reference to a static reference.(şëÂîùÿÿÿÿ
+V
+java:S4684H"@Replace this persistent entity with a simple POJO or DTO object.(œí
+V
+java:S2184'"@Cast one of the operands of this addition operation to a "long".(ú‰ã­
+«
+java:S4449K"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(ëßøÿÿÿÿ
