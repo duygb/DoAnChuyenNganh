@@ -18,6 +18,6 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Integer
     @Modifying
     void updateEnabledStatus(Integer id, boolean enabled);
 
-    @Query("SELECT b FROM Book b WHERE CONCAT(b.id, ' ', b.name, ' ', b.publisher, ' ', b.nameAuthor) LIKE %?1%")
+    @Query("SELECT b FROM Book b WHERE CONCAT(b.id, ' ', b.name, ' ', b.publisher, ' ', b.nameAuthor, ' ',b.isbn) LIKE %?1%")
     Page<Book> findAll(String keyword, Pageable pageable);
 }

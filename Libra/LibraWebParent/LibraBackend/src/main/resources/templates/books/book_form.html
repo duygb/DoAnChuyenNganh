@@ -52,21 +52,23 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Số lượng</label>
-                <div class="col-sm-8">
-                    <input type="number" class="form-control" required th:field="*{quantity}" min="0"/>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Năm xuất bản</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" required minlength="4" th:field="*{printYear}"/>
                 </div>
             </div>
             <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Số lượng</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" required th:field="*{quantity}" min="0"
+                           oninput="checkValidAvailable(document.getElementById('available'))"/>
+                </div>
+            </div>
+            <div class=" form-group row">
                 <label class="col-sm-4 col-form-label">Có sẵn</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" required th:field="*{available}" min="0"/>
+                    <input type="number" class="form-control" required th:field="*{available}" min="0"
+                           oninput="checkValidAvailable(this)"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -135,6 +137,14 @@
         });
 
         return false;
+    }
+
+    function checkValidAvailable(available) {
+        if (available.value > $("#quantity").val()) {
+            available.setCustomValidity("Số lượng có sẵn không được lớn hơn số lượng mặc định!");
+        } else {
+            available.setCustomValidity("");
+        }
     }
 </script>
 <script th:src="@{/js/common_form.js}"></script>

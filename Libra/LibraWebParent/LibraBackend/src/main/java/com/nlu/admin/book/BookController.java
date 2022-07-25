@@ -89,7 +89,7 @@ public class BookController {
 
         redirectAttributes.addFlashAttribute("message", "Sách đã được lưu thành công !");
 
-        return "redirect:/books";
+        return "redirect:/books/page/1?keyword=" + book.getIsbn();
     }
 
     @GetMapping("/books/edit/{id}")

@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository extends PagingAndSortingRepository<Book, Integer> {
 
-    @Query("SELECT b FROM Book b WHERE CONCAT(b.name, ' ', b.publisher, ' ', b.nameAuthor) LIKE %?1%")
+    @Query("SELECT b FROM Book b WHERE CONCAT(b.name, ' ', b.publisher, ' ', b.nameAuthor) LIKE %?1% AND b.available > 0")
     Page<Book> findAll(String keyword, Pageable pageable);
 }
