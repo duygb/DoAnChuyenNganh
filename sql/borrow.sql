@@ -1,0 +1,1 @@
+INSERT INTO `borrow` VALUES (1,_binary '','2022-07-06','2022-07-12',1,9);

@@ -1,13 +1,17 @@
 package com.nlu.libra.book;
 
 import com.nlu.common.entity.Book;
+import com.nlu.common.entity.Borrow;
 import com.nlu.common.exception.BookNotFoundException;
+import com.nlu.common.exception.UserNotFoundException;
+import com.nlu.libra.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +23,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/books")
     public String listFirstPage(Model model) {
@@ -57,8 +64,11 @@ public class BookController {
         }
         try {
             Book book = bookService.get(id);
+            Borrow borrow = new Borrow();
+            borrow.setEnabled(true);
 
             model.addAttribute("book", book);
+            model.addAttribute("borrow", borrow);
 
             return "borrows";
         } catch (BookNotFoundException e) {
@@ -68,11 +78,57 @@ public class BookController {
         }
     }
 
+    @PostMapping("/borrow/save")
+    public String saveBorrow(Borrow borrow, @RequestParam(name = "userId") Integer userId,
+                             @RequestParam(name = "bookId") Integer bookId, RedirectAttributes redirectAttributes)
+            throws BookNotFoundException, UserNotFoundException {
+
+        Borrow savedBorrow = new Borrow();
+
+        savedBorrow.setUser(userService.get(userId));
+        savedBorrow.setBook(bookService.get(bookId));
+        savedBorrow.setLoanDate(borrow.getLoanDate());
+        savedBorrow.setEnabled(borrow.isEnabled());
+        savedBorrow.setReturnedDate(borrow.getReturnedDate());
+
+        bookService.saveBorrow(savedBorrow);
+
+        Book book = bookService.get(bookId);
+        byte updateAvailable = (byte) (book.getAvailable() - 1);
+        book.setAvailable(updateAvailable);
+
+        bookService.saveBook(book);
+
+        redirectAttributes.addFlashAttribute("message", "Mượn sách thành công !");
+
+        return "redirect:/books";
+    }
+
     @GetMapping("/return")
     public String viewReturn(HttpServletRequest request) {
         if (request.getSession().getAttribute("userLogged") == null) {
             return "redirect:/login";
         }
         return "returns";
+    }
+
+    @PostMapping("/return/delete")
+    public String returnBook(@RequestParam(name = "isbn") String isbn, @RequestParam(name = "id") Integer id,
+                             RedirectAttributes redirectAttributes) throws BookNotFoundException {
+        try {
+            Borrow borrow = bookService.getBorrow(id, isbn);
+
+            Book book = borrow.getBook();
+            byte available = (byte) (book.getAvailable() + 1);
+            book.setAvailable(available);
+
+            bookService.saveBook(book);
+            bookService.delete(borrow.getId());
+            redirectAttributes.addFlashAttribute("message", "Sách được trả thành công !");
+
+        } catch (BookNotFoundException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        }
+        return "redirect:/books";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head('Trả sách - Libraria')"/>
 <body>
 
@@ -25,8 +25,11 @@
                             <article class="page type-page status-publish hentry">
                                 <div class="entry-content">
                                     <div class="woocommerce">
-                                        <form action="http://libraria.demo.presstigers.com/checkout.html"
-                                              class="checkout woocommerce-checkout" method="post" name="checkout">
+                                        <form th:action="@{/return/delete}"
+                                              class="checkout woocommerce-checkout" method="post" name="checkout"
+                                              onsubmit="return checkIsbnUnique(this);">
+                                            <input type="hidden" th:name="id" th:value="${session.userLogged.id}"
+                                                   id="userId"/>
                                             <div class="row">
                                                 <div class="col-sm-8">
                                                     <h2>Nhập thông tin sách</h2>
@@ -38,12 +41,11 @@
                                                                     <span class="first-letter">Nhập mã ISBN</span>
                                                                     <span class="second-letter">*</span>
                                                                 </label>
-                                                                <input type="text" value="" class="input-text">
+                                                                <input type="text" class="input-text"
+                                                                       id="isbnId" th:name="isbn">
                                                             </p>
                                                             <input type="submit" class="btn btn-default" name="Login"
                                                                    value="Xác nhận">
-                                                            <input type="button" value="Trở về"
-                                                                   class="btn btn-primary" id="btnCancel">
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
@@ -68,15 +70,31 @@
 <div th:replace="fragments :: script"/>
 
 <script type="text/javascript">
-    moduleURL = "[[@{/books}]]";
+    moduleURL = "[[@{/return}]]";
 
-    $(document).ready(function () {
-        // navigate when pressing cancel button
-        $("#btnCancel").on("click", function () {
-            window.location = moduleURL;
+    function checkIsbnUnique(form) {
+        url = "[[@{/return/check_isbn}]]";
+        bookIsbn = $("#isbnId").val();
+        bookId = $("#userId").val();
+        csrfValue = $("input[name='_csrf']").val();
+
+        params = {id: bookId, isbn: bookIsbn, _csrf: csrfValue};
+
+        $.post(url, params, function (response) {
+            if (response == "OK") {
+                form.submit();
+            } else if (response == "Duplicated") {
+                alert("Mã isbn không hợp lệ")
+            } else {
+                showErrorModal("Unknown response from server");
+            }
+        }).fail(function () {
+            showErrorModal("Could not connect to the server"); // this line runs when the above url is wrong
         });
-    });
-</script>
 
+        return false;
+    }
+</script>
+<script th:src="@{/js/common_form.js}"></script>
 </body>
 </html>

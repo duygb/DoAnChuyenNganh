@@ -22,8 +22,6 @@ ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/RoleRepositoryTest
 S
 #LibraWebParent/LibraBackend/pom.xml,7\1\71f939aabdaf0f18fd63c81ab5a8b6dc05e10b37
 Ö
-ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/UserRepositoryTests.java,0\b\0b0a031290036ac52c6630432a3b2f50eccb18cd
-Ö
 ULibraWebParent/LibraBackend/src/test/java/com/nlu/admin/user/PasswordEncoderTest.java,7\d\7da613321a6eaad2c02d5409486d11fb4275f2d2
 C
 LibraCommon/pom.xml,d\4\d4087470329ecf1acab916d6acfd320b58db88d3
@@ -38,8 +36,6 @@ PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/role/RoleRepository.jav
 é
 ^LibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianRestController.java,6\4\64488ebd4bcf22dc58fad175a4edf108a7cb7f31
 Ñ
-TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/CategoryRepository.java,2\f\2f712031e299a63fe79f0984bd29fce717d59a22
-Ñ
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookRestController.java,c\b\cb0f4e5a527c43a67be54ff2f86537128c5c4782
 {
 KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/FileUploadUtil.java,4\b\4b341da4119305cb33d8140d73a8023eb204dc49
@@ -51,8 +47,6 @@ i
 9LibraCommon/src/main/java/com/nlu/common/entity/User.java,d\9\d9e2b478553f7cc208c39eeabb0d9f961e9825fc
 á
 WLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianService.java,0\d\0d2efd8b5e4b07f63182c62cb0c62d01683d002e
-k
-;LibraCommon/src/main/java/com/nlu/common/entity/Borrow.java,5\a\5a99dc37f261ee013be01c52ace14780cb945135
 ä
 ZLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/librarian/LibrarianController.java,1\b\1bfda9cde3771dbd38b9e8862de0e06131967b49
 Å
@@ -69,8 +63,6 @@ VLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/LibraFrontendApplicati
 XLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/security/WebSecurityConfig.java,3\8\38ee0954d1fca7e59404d7959d696c608cb18691
 á
 WLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/contact/ContactController.java,8\3\8301f11544cbba806bb7d3c69d868a3f0639e1da
-~
-NLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/user/UserService.java,a\6\a62087d636e5d074bd3f3224d59bc790b662f57b
 Å
 QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/user/UserController.java,6\1\61ffd4e75275911888a79e94328c1a7b8555194d
 |
@@ -79,15 +71,11 @@ LLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/MainController.java,2
 TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/LibraBackendApplication.java,f\4\f46afcc1722fca6d9efa49ff4ce47797172473a0
 Ä
 PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserRepository.java,6\1\6169ae64c2ceaf168bcab1e6150fda7d8c2de72b
-i
-9LibraCommon/src/main/java/com/nlu/common/entity/Book.java,0\b\0bd39f5afd6d756d717286aed77367e92bc5de3a
-Å
-QLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookRepository.java,e\1\e143e68f69f941507a27a7866b2cc1202457353f
-Ä
-PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookRepository.java,8\e\8ee4a71c58dfb1609de02f710f5d0ef1134bc12b
 }
-MLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookService.java,d\4\d49e6ffcb87b8e8decd0ae1ef4bc77e7a8514d16
-~
-NLibraWebParent/LibraFrontend/src/main/java/com/nlu/libra/book/BookService.java,b\5\b5580d8135f3dc3a333333a522279d2adcb9c3da
+MLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserService.java,5\c\5ca087229eb575796b05ff137476692cd091176f
+{
+KLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/MainController.java,e\6\e6f95e94eb9e989bcfce772c2bdbf3b2476fa079
 Ä
-PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/BookController.java,5\b\5b8a1c5e3544a191c6e2e81f4eb92e4869e86659
+PLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/user/UserController.java,e\a\eac45e8c43e88d9ce2e0776c0340a5457ebacf55
+Ñ
+TLibraWebParent/LibraBackend/src/main/java/com/nlu/admin/book/CategoryRepository.java,2\f\2f712031e299a63fe79f0984bd29fce717d59a22
